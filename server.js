@@ -7,7 +7,7 @@ require("./backend/config/database");
 const app = express();
 require("./backend/config/database");
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 8080;
 
 app.use(logger("dev"));
 app.use(express.json());
