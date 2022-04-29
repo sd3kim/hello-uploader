@@ -6,6 +6,7 @@ import AuthPage from "./pages/AuthPage/AuthPage";
 import NavBar from "./components/NavBar/NavBar";
 import MainPage from "./pages/MainPage/MainPage";
 import Uploader from "./components/Upload/Upload";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component {
@@ -35,13 +36,23 @@ class App extends React.Component {
       <div className="App">
         {this.state.user ? (
           <div>
-            <UserLogOut
-              setUserInState={this.setUserInState}
-              user={this.state.user}
-            />
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/files" element={<Uploader />} />
+              <Route
+                path="/profile"
+                element={
+                  <ProfilePage
+                    setUserInState={this.setUserInState}
+                    user={this.state.user}
+                  />
+                }
+              />
+            </Routes>
+            ;
             <NavBar />
-            <MainPage />
-      <Uploader />
+            {/* <MainPage /> */}
+            <Uploader />
           </div>
         ) : (
           <AuthPage setUserInState={this.setUserInState} />
