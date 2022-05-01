@@ -6,8 +6,8 @@ import NavBar from "./components/NavBar/NavBar";
 import MainPage from "./pages/MainPage/MainPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ViewFilesPage from "./pages/ViewFilesPage/ViewFilesPage";
-import Uploader from "./components/Uploader/Uploader";
-import Gallery from "./components/Gallery/Gallery";
+// import Uploader from "./components/Uploader/Uploader";
+// import Gallery from "./components/Gallery/Gallery";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component {
