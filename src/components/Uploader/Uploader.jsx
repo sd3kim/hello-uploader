@@ -1,11 +1,11 @@
 import React from "react";
-import "./Upload.css";
+import "./Uploader.css";
 
 export default function Uploader() {
   return (
     <div className="Wrapper">
-      <div className="Upload">
-        <form>
+      <div>
+        <form className="Upload">
           <input type="file"></input>
           <button type="submit">Upload</button>
         </form>

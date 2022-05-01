@@ -8,6 +8,7 @@ export default function NavBar() {
       <nav
         className="navbar navbar-expand-lg text-uppercase fixed-top"
         id="mainNav"
+        style={{ backgroundColor: "rgb(32,42,68)" }}
       >
         <div className="container">
           <Link to="/" className="navbar-brand">

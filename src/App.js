@@ -1,12 +1,11 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import UserLogOut from "./components/UserLogOut/UserLogOut";
 import AuthPage from "./pages/AuthPage/AuthPage";
 import NavBar from "./components/NavBar/NavBar";
 import MainPage from "./pages/MainPage/MainPage";
-import Uploader from "./components/Upload/Upload";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import ViewFilesPage from "./pages/ViewFilesPage/ViewFilesPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component {
@@ -38,7 +37,7 @@ class App extends React.Component {
           <div>
             <Routes>
               <Route path="/" element={<MainPage />} />
-              <Route path="/files" element={<Uploader />} />
+              <Route path="/files" element={<ViewFilesPage />} />
               <Route
                 path="/profile"
                 element={
@@ -49,10 +48,7 @@ class App extends React.Component {
                 }
               />
             </Routes>
-            ;
             <NavBar />
-            {/* <MainPage /> */}
-            <Uploader />
           </div>
         ) : (
           <AuthPage setUserInState={this.setUserInState} />
