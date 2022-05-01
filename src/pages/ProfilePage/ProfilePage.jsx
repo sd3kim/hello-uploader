@@ -1,9 +1,13 @@
 import React from "react";
 import UserLogOut from "../../components/UserLogOut/UserLogOut";
+import "./ProfilePage.css";
+
 export default function ProfilePage(props) {
   return (
     <div>
-      <UserLogOut setUserInState={props.setUserInState} user={props.user} />
+      <div className="Logout">
+        <UserLogOut setUserInState={props.setUserInState} user={props.user} />
+      </div>
     </div>
   );
 }
