@@ -15,7 +15,8 @@ export default function NavBar() {
             Home
           </Link>
           <button
-            className="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
+            className="navbar-toggler text-uppercase py-3 px-0 px-lg-3 text-white rounded"
+            style={{ fontSize: "15px" }}
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarResponsive"
@@ -23,8 +24,7 @@ export default function NavBar() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            Menu
-            <i className="fas fa-bars"></i>
+            Menu Items ▽<i className="fas fa-bars"></i>
           </button>
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav ms-auto">
