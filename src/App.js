@@ -84,7 +84,7 @@ function App() {
   const [images, setImages] = useState([]);
 
   const setUserInState = (incomingUserData) => {
-    setUser({ user: incomingUserData });
+    setUser(incomingUserData);
     console.log(user);
     // this.setState({ user: incomingUserData });
   };
@@ -101,7 +101,7 @@ function App() {
         token = null;
       } else {
         let userDoc = payload.user;
-        setUser({ user: userDoc });
+        setUser(userDoc);
         // this.setState({ user: userDoc });
       }
     }
