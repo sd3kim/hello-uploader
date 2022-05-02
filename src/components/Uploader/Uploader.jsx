@@ -24,7 +24,8 @@ export default function Uploader() {
             type="file"
             accept="image/png, image/pdf, image/jpeg"
             filename={file}
-            onChange={(e) => setFile(e.target.files[0])}
+            multiple
+            onChange={(e) => setFile(e.target.files)}
           ></input>
           <button type="submit">Upload</button>
         </form>
