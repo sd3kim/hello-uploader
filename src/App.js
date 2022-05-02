@@ -8,11 +8,13 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ViewFilesPage from "./pages/ViewFilesPage/ViewFilesPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+
 export default function App() {
   const [user, setUser] = useState();
+  const [images, setImages] = useState([]);
 
   const setUserInState = (incomingUserData) => {
-    setUser({ user: incomingUserData });
+    setUser(incomingUserData);
     console.log(user);
   };
 
@@ -25,7 +27,8 @@ export default function App() {
         token = null;
       } else {
         let userDoc = payload.user;
-        setUser({ user: userDoc });
+
+        setUser(userDoc);
       }
     }
   }, []);

@@ -20,4 +20,13 @@ const fileSchema = new Schema(
   },
   { timestamps: true }
 );
+
+const mutipleFilesSchema = new Schema(
+  {
+    files: [Object],
+  },
+  { timestamps: true }
+);
+
 module.exports = mongoose.model("File", fileSchema);
+module.exports = mongoose.model("MultipleFile", mutipleFilesSchema);

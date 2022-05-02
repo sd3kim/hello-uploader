@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
 import "./Uploader.css";
-// import Gallery from "../../components/Gallery/Gallery";
 
 export default function Uploader({ files, setFiles }) {
   const [uploadFile, setUploadFile] = useState();
@@ -39,6 +38,7 @@ export default function Uploader({ files, setFiles }) {
           <input
             type="file"
             accept="image/png, image/pdf, image/jpeg"
+
             filename={uploadFile}
             onChange={(e) => setUploadFile(e.target.files[0])}
           ></input>
@@ -49,7 +49,6 @@ export default function Uploader({ files, setFiles }) {
         </form>
       </div>
       <div style={{ color: "red" }}>{message}</div>
-      {/* <Gallery files={files} setFiles={setFiles} /> */}
     </div>
   );
 }
