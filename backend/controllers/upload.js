@@ -18,15 +18,15 @@ async function create(req, res) {
     console.log(req.file);
     const result = await uploadFile(req.file);
     console.log(result);
-    const files = new Files({
+    const files = await Files.create({
       fileName: req.file.originalname,
-      // filePath: req.file.path,
+      filePath: req.file.path,
       fileType: req.file.mimetype,
       fileSize: fileSizeFormatter(req.file.size, 2),
       // user: req.user._id,
     });
-    await files.save();
-    res.json(req.file);
+    // await files.save();
+    res.json(files);
   } catch (err) {
     console.log(err);
     res.status(400).json(err.message);
