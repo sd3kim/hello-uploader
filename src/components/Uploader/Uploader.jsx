@@ -2,18 +2,33 @@ import axios from "axios";
 import React, { useState } from "react";
 import "./Uploader.css";
 
-export default function Uploader() {
-  const [file, setFile] = useState();
+export default function Uploader({ files, setFiles }) {
+  const [uploadFile, setUploadFile] = useState();
+  const [progress, setProgress] = useState(0);
+  const [message, setMessage] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const formData = new FormData();
-      formData.append("image", file);
-      const result = await axios.post("/api/images", formData, {
-        headers: { "Content-Type": "multipart/form.data" },
-      });
+      if (uploadFile === undefined) {
+        setMessage("You must select a file to upload");
+      } else {
+        const formData = new FormData();
+        formData.append("image", uploadFile);
+        const result = await axios.post("/api/images", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+          onUploadProgress: (data) => {
+            setProgress(Math.round((100 * data.loaded) / data.total));
+          },
+        });
+        setMessage("File has been uploaded");
+        // setting file array with metadata
+        setFiles([...files, result.data]);
+        console.log(result);
+      }
     } catch (err) {
       console.log(err);
+      setMessage("Error while uploading");
     }
   };
   return (
@@ -23,13 +38,17 @@ export default function Uploader() {
           <input
             type="file"
             accept="image/png, image/pdf, image/jpeg"
-            filename={file}
-            multiple
-            onChange={(e) => setFile(e.target.files)}
+
+            filename={uploadFile}
+            onChange={(e) => setUploadFile(e.target.files[0])}
           ></input>
           <button type="submit">Upload</button>
+          <br />
+          <br />
+          <div>{progress}% Uploaded</div>
         </form>
       </div>
+      <div style={{ color: "red" }}>{message}</div>
     </div>
   );
 }

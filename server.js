@@ -21,6 +21,7 @@ app.use(express.static(path.join(__dirname, "./build")));
 app.use("/images", express.static("images"));
 app.use("/api/users", require("./backend/routes/api/users"));
 app.use("/api/images", require("./backend/routes/api/files"));
+
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "./build", "index.html"));
 });

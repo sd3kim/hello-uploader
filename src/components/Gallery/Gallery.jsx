@@ -1,17 +1,16 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 
-export default function Gallery({ images }) {
+export default function Gallery({ files, setFiles }) {
   useEffect(() => {
-    axios
-      .get("/images")
-      .then((response) => this.setState({ images: response.data }));
-    return () => {};
+    axios.get("/api/images").then((response) => {
+      setFiles(response.data);
+    });
   }, []);
   return (
     <div>
-      {images &&
-        images.map((image, idx) => <img key={idx} src={`/images/${image}`} />)}
+      {files &&
+        files.map((file, idx) => <img key={idx} src={`/${file.filePath}`} />)}
     </div>
   );
 }
