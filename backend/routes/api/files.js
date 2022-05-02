@@ -6,4 +6,12 @@ const filesCtrl = require("../../controllers/upload");
 
 router.post("/", upload.single("image"), filesCtrl.create);
 router.get("/", filesCtrl.index);
+
+router.post(
+  "/multipleFiles",
+  upload.array("image"),
+  filesCtrl.multipleFileUpload
+);
+router.get("/getMultpileFile", filesCtrl.getMultipleFiles);
+
 module.exports = router;

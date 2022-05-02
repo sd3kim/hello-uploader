@@ -40,8 +40,39 @@ async function index(req, res) {
     res.status(500).json(err);
   }
 }
+async function getMultipleFiles(req, res) {
+  try {
+    const files = await MultipleFile.find();
+    res.status(200).send(files);
+  } catch (err) {
+    res.status(400).send(err.message);
+  }
+}
+async function multipleFileUpload(req, res) {
+  try {
+    let filesArray = [];
+    req.filesArray.forEach((element) => {
+      const file = {
+        fileName: element.originalname,
+        filePath: element.path,
+        fileType: element.mimetype,
+        fileSize: fileSizeFormatter(element.size, 2),
+      };
+      filesArray.push(file);
+    });
+    const mutipleFiles = new mutipleFiles({
+      files: filesArray,
+    });
+    await mutipleFiles.save();
+    res.status(201).json("file send successfully");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
 
 module.exports = {
   create,
   index,
+  multipleFileUpload,
+  getMultipleFiles,
 };
