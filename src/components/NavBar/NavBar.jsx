@@ -6,7 +6,7 @@ export default function NavBar() {
   return (
     <div>
       <nav
-        className="navbar navbar-expand-lg text-uppercase fixed-top"
+        className="navbar navbar-expand-md text-uppercase fixed-top"
         id="mainNav"
         style={{ backgroundColor: "rgb(32,42,68)" }}
       >

@@ -17,7 +17,7 @@ async function create(req, res) {
     console.log(req.file);
     const files = new Files({
       fileName: req.file.originalname,
-      filePath: req.file.path,
+      // filePath: req.file.path,
       fileType: req.file.mimetype,
       fileSize: fileSizeFormatter(req.file.size, 2),
       // user: req.user._id,
@@ -26,14 +26,19 @@ async function create(req, res) {
     res.json(req.file);
   } catch (err) {
     console.log(err);
-    res.status(400).json(err);
+    res.status(400).json(err.message);
   }
 }
+
 async function index(req, res) {
   try {
     const result = await fs.promises.readdir("images/");
-    res.json(result);
+    const files = await Files.find();
+    // res.json(result);
+    console.log("hi");
+    res.status(200).send(files);
   } catch (err) {
+    console.log("error", err);
     res.status(500).json(err);
   }
 }

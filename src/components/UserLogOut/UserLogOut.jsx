@@ -1,22 +1,19 @@
 import React from "react";
 
-class UserLogOut extends React.Component {
-  handleLogout = () => {
+export default function UserLogOut(props) {
+  let handleLogout = () => {
     localStorage.removeItem("token");
-    this.props.setUserInState(null);
+    props.setUserInState(null);
+    window.location.reload(true);
   };
 
-  render() {
-    return (
-      <div className="UserLogOut">
-        <div>Name: {this.props.user.name}</div>
-        <div>Email:{this.props.user.email}</div>
-        <button className="btn-sm" onClick={this.handleLogout}>
-          Logout
-        </button>
-      </div>
-    );
-  }
+  return (
+    <div className="UserLogOut">
+      <div>Name: {props.user.user.name}</div>
+      <div>Email:{props.user.user.email}</div>
+      <button className="btn-sm" type="submit" onClick={handleLogout}>
+        Logout
+      </button>
+    </div>
+  );
 }
-
-export default UserLogOut;

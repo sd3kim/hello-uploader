@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import AuthPage from "./pages/AuthPage/AuthPage";
@@ -6,20 +6,17 @@ import NavBar from "./components/NavBar/NavBar";
 import MainPage from "./pages/MainPage/MainPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ViewFilesPage from "./pages/ViewFilesPage/ViewFilesPage";
-// import Uploader from "./components/Uploader/Uploader";
-// import Gallery from "./components/Gallery/Gallery";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-class App extends React.Component {
-  state = {
-    user: null,
-    images: [],
-  };
-  setUserInState = (incomingUserData) => {
-    this.setState({ user: incomingUserData });
+export default function App() {
+  const [user, setUser] = useState();
+
+  const setUserInState = (incomingUserData) => {
+    setUser({ user: incomingUserData });
+    console.log(user);
   };
 
-  componentDidMount = () => {
+  useEffect(() => {
     let token = localStorage.getItem("token");
     if (token) {
       const payload = JSON.parse(atob(token.split(".")[1]));
@@ -28,37 +25,30 @@ class App extends React.Component {
         token = null;
       } else {
         let userDoc = payload.user;
-        this.setState({ user: userDoc });
+        setUser({ user: userDoc });
       }
     }
-  };
+  }, []);
 
-  render() {
-    return (
-      <div className="App">
-        {this.state.user ? (
-          <div>
-            <Routes>
-              <Route path="/" element={<MainPage />} />
-              <Route path="/files" element={<ViewFilesPage />} />
-              <Route
-                path="/profile"
-                element={
-                  <ProfilePage
-                    setUserInState={this.setUserInState}
-                    user={this.state.user}
-                  />
-                }
-              />
-            </Routes>
-            <NavBar />
-          </div>
-        ) : (
-          <AuthPage setUserInState={this.setUserInState} />
-        )}
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      {user ? (
+        <div>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/files" element={<ViewFilesPage />} />
+            <Route
+              path="/profile"
+              element={
+                <ProfilePage setUserInState={setUserInState} user={user} />
+              }
+            />
+          </Routes>
+          <NavBar />
+        </div>
+      ) : (
+        <AuthPage setUserInState={setUserInState} />
+      )}
+    </div>
+  );
 }
-
-export default App;
