@@ -1,5 +1,6 @@
 const Files = require("../models/file");
 const fs = require("fs");
+const { uploadFile, getFileStream } = require("../config/s3");
 const fileSizeFormatter = (bytes, decimal) => {
   if (bytes === 0) {
     return "0 Bytes";
@@ -15,6 +16,8 @@ const fileSizeFormatter = (bytes, decimal) => {
 async function create(req, res) {
   try {
     console.log(req.file);
+    const result = await uploadFile(req.file);
+    console.log(result);
     const files = new Files({
       fileName: req.file.originalname,
       filePath: req.file.path,
