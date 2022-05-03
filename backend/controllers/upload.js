@@ -19,28 +19,29 @@ async function create(req, res) {
     console.log(req.file);
     const result = await uploadFile(req.file);
     console.log(result);
-    const files = new Files({
+    const files = await Files.create({
       fileName: req.file.originalname,
       filePath: req.file.path,
       fileType: req.file.mimetype,
       fileSize: fileSizeFormatter(req.file.size, 2),
       // user: req.user._id,
     });
-    await files.save();
     res.json(files);
   } catch (err) {
     console.log(err);
-    res.status(400).json(err);
+    res.status(400).json(err.message);
   }
 }
-async function index(req, res) {
-  try {
-    const result = await Files.find();
-    res.json(result);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-}
+
+// async function index(req, res) {
+//   try {
+//     const result = await Files.find();
+//     res.json(result);
+//   } catch (err) {
+//     console.log("error", err);
+//     res.status(500).json(err);
+//   }
+// }
 async function getMultipleFiles(req, res) {
   try {
     const files = await MultipleFile.find();

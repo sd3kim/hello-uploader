@@ -3,15 +3,17 @@
   align-items: center;
   align-content: center;
   justify-content: center;
-  margin-top: 65px;
+  margin-top: 20px;
 }
 
 .Upload {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px;
   border-style: dashed;
   padding-top: 10px;
   width: 500px;
   height: 200px;
+  background-color: rgb(194, 193, 193);
 }

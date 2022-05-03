@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import "./Uploader.css";
 
+
 export default function Uploader() {
   const [multipleFiles, setMultipleFiles] = useState([]);
 
@@ -16,8 +17,10 @@ export default function Uploader() {
         headers: { "Content-Type": "multipart/form.data" },
       });
       console.log(result.data);
+
     } catch (err) {
       console.log(err);
+      setMessage("Error while uploading");
     }
   };
   return (
@@ -26,6 +29,7 @@ export default function Uploader() {
         <form>
           <input
             type="file"
+
             accept="image/png, application/pdf, image/jpeg"
             // filename={multipleFiles}
             multiple
@@ -34,8 +38,10 @@ export default function Uploader() {
           <button onClick={handleSubmit} type="submit">
             Upload
           </button>
+
         </form>
       </div>
+      <div style={{ color: "red" }}>{message}</div>
     </div>
   );
 }

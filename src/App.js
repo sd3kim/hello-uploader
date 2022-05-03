@@ -8,7 +8,9 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ViewFilesPage from "./pages/ViewFilesPage/ViewFilesPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
+
+export default function App() {
+
   const [user, setUser] = useState();
   const [images, setImages] = useState([]);
 
@@ -26,10 +28,12 @@ function App() {
         token = null;
       } else {
         let userDoc = payload.user;
+
         setUser(userDoc);
       }
     }
   }, []);
+
   return (
     <div className="App">
       {user ? (
@@ -53,4 +57,3 @@ function App() {
   );
 }
 
-export default App;
