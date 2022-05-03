@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../../css/styles.css";
 import Uploader from "../../components/Uploader/Uploader";
-import Gallery from "../../components/Gallery/Gallery";
 
 export default function MainPage() {
   const [files, setFiles] = useState([]);
@@ -24,8 +23,9 @@ export default function MainPage() {
           PDF - PNG - JPEG
         </p>
       </header>
-      <Uploader files={files} setFiles={setFiles} />
-      <Gallery files={files} setFiles={setFiles} />
+
+      <Uploader />
+
     </div>
   );
 }

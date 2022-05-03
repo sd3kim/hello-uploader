@@ -2,30 +2,22 @@ import axios from "axios";
 import React, { useState } from "react";
 import "./Uploader.css";
 
-export default function Uploader({ files, setFiles }) {
-  const [uploadFile, setUploadFile] = useState();
-  const [progress, setProgress] = useState(0);
-  const [message, setMessage] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+export default function Uploader() {
+  const [multipleFiles, setMultipleFiles] = useState([]);
+
+  const handleSubmit = async (data) => {
+    data.preventDefault();
     try {
-      if (uploadFile === undefined) {
-        setMessage("You must select a file to upload");
-      } else {
-        const formData = new FormData();
-        formData.append("image", uploadFile);
-        const result = await axios.post("/api/images", formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-          onUploadProgress: (data) => {
-            setProgress(Math.round((100 * data.loaded) / data.total));
-          },
-        });
-        setMessage("File has been uploaded");
-        // setting file array with metadata
-        setFiles([...files, result.data]);
-        console.log(result);
+      const formData = new FormData();
+      for (let i = 0; i < multipleFiles.length; i++) {
+        formData.append("files", multipleFiles[i]);
       }
+      const result = await axios.post("/api/images/multipleFiles", formData, {
+        headers: { "Content-Type": "multipart/form.data" },
+      });
+      console.log(result.data);
+
     } catch (err) {
       console.log(err);
       setMessage("Error while uploading");
@@ -34,17 +26,19 @@ export default function Uploader({ files, setFiles }) {
   return (
     <div className="Wrapper">
       <div className="Upload">
-        <form onSubmit={handleSubmit}>
+        <form>
           <input
             type="file"
-            accept="image/png, image/pdf, image/jpeg"
-            filename={uploadFile}
-            onChange={(e) => setUploadFile(e.target.files[0])}
+
+            accept="image/png, application/pdf, image/jpeg"
+            // filename={multipleFiles}
+            multiple
+            onChange={(e) => setMultipleFiles(e.target.files)}
           ></input>
-          <button type="submit">Upload</button>
-          <br />
-          <br />
-          <div>{progress}% Uploaded</div>
+          <button onClick={handleSubmit} type="submit">
+            Upload
+          </button>
+
         </form>
       </div>
       <div style={{ color: "red" }}>{message}</div>

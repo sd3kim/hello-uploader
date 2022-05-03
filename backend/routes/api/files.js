@@ -10,9 +10,9 @@ router.get("/", filesCtrl.index);
 
 router.post(
   "/multipleFiles",
-  upload.array("image"),
+  upload.array("files"),
   filesCtrl.multipleFileUpload
 );
-router.get("/getMultpileFile", filesCtrl.getMultipleFiles);
+router.get("/getMultpileFiles", filesCtrl.getMultipleFiles);
 
 module.exports = router;
