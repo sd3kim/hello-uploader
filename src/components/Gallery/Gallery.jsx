@@ -2,13 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 export default function Gallery() {
-  const [multipleFiles, setMultipleFiles] = useState([]);
+  const [files, setFiles] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const filelist = await getMultpileFiles();
-        setMultipleFiles(filelist);
+        const filelist = await getFiles();
+        setFiles(filelist);
         console.log(filelist);
       } catch (err) {
         console.log(err);
@@ -16,19 +16,19 @@ export default function Gallery() {
     };
     fetchData();
   }, []);
-  const getMultpileFiles = async () => {
+  const getFiles = async () => {
     try {
-      const { data } = await axios.get("/api/images/getMultpileFiles");
+      const { data } = await axios.get("/api/getFiles");
       return data;
     } catch (err) {
       console.log(err);
     }
   };
-  // console.log("this is multi files", { multipleFiles });
+  // console.log("this is multi files", { files });
   return (
     <div>
-      {multipleFiles &&
-        multipleFiles.map((image, index) => (
+      {files &&
+        files.map((image, index) => (
           <div key={index}>
             {image.files.map((file, idx) => (
               <img key={idx} src={`/${file.filePath}`} />
