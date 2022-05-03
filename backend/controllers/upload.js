@@ -1,6 +1,6 @@
 const File = require("../models/file");
 const fs = require("fs");
-const { uploadFile, getFileStream } = require("../config/s3");
+const { uploadFile, getFileStream, getAllFiles } = require("../config/s3");
 const fileSizeFormatter = (bytes, decimal) => {
   if (bytes === 0) {
     return "0 Bytes";
@@ -43,10 +43,18 @@ async function create(req, res) {
 // }
 async function getFiles(req, res) {
   try {
+
+    const response = await getAllFiles();
+    console.log("this is response", response);
+    const keyArr = response.Contents.map((obj) => {
+      return obj.Key;
+    });
+
     const files = await File.find();
     console.log("this is files", files);
     res.status(200).json(files);
   } catch (err) {
+    console.log(err);
     res.status(400).send(err.message);
   }
 }

@@ -13,11 +13,8 @@ const s3 = new S3({
 });
 async function uploadFile(file) {
   console.log("this is file path", file);
-  // const fileStream = fs.createReadStream(file.path);
   const uploadParams = {
     Bucket: BUCKET_NAME,
-    // Body: fileStream,
-    // Key: file.filename,
   };
   const responses = await Promise.all(
     file.map((param) => {
@@ -27,18 +24,15 @@ async function uploadFile(file) {
     })
   );
   console.log("this is responeses", responses);
-  // return s3.upload(uploadParams).promise.all(promise);
-  // return s3.uploadFileList(uploadParams).promise();
-  // return s3.listMultipartUploads(uploadParams).promise();
 }
-function getFileStream(fileKey) {
-  const downloadParams = {
-    Key: fileKey,
-    Bucket: BUCKET_NAME,
-  };
-  return s3.getObject(downloadParams).createReadStream();
-}
-function getFiles() {
+// function getFileStream(fileKey) {
+//   const downloadParams = {
+//     Key: fileKey,
+//     Bucket: BUCKET_NAME,
+//   };
+//   return s3.getObject(downloadParams).createReadStream();
+// }
+function getAllFiles() {
   const params = {
     Bucket: BUCKET_NAME,
   };
@@ -46,5 +40,5 @@ function getFiles() {
 }
 
 exports.uploadFile = uploadFile;
-exports.getFileStream = getFileStream;
-exports.getFiles = getFiles;
+// exports.getFileStream = getFileStream;
+exports.getAllFiles = getAllFiles;
