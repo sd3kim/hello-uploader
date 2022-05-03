@@ -18,6 +18,7 @@ const filesSchema = new Schema(
           type: String,
           required: true,
         },
+        user: { type: Schema.Types.ObjectId, ref: "User" },
       },
     ],
   },

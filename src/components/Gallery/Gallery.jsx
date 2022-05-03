@@ -19,6 +19,7 @@ export default function Gallery() {
   const getFiles = async () => {
     try {
       const { data } = await axios.get("/api/getFiles");
+      console.log("this is data", data);
       return data;
     } catch (err) {
       console.log(err);
@@ -27,13 +28,17 @@ export default function Gallery() {
   // console.log("this is multi files", { files });
   return (
     <div>
-      {files &&
+      {/* {files &&
         files.map((image, index) => (
           <div key={index}>
             {image.files.map((file, idx) => (
               <img key={idx} src={`/${file.filePath}`} />
             ))}
           </div>
+        ))} */}
+      {files &&
+        files.map((image, index) => (
+          <img key={index} src={`/files/${image}`} />
         ))}
     </div>
   );
