@@ -43,11 +43,13 @@ async function create(req, res) {
 // }
 async function getFiles(req, res) {
   try {
+
     const response = await getAllFiles();
     console.log("this is response", response);
     const keyArr = response.Contents.map((obj) => {
       return obj.Key;
     });
+
     const files = await File.find();
     console.log("this is files", files);
     res.status(200).json(files);
