@@ -4,7 +4,7 @@ import "./Uploader.css";
 
 export default function Uploader() {
   const [multipleFiles, setMultipleFiles] = useState([]);
-
+  const [message, setMessage] = useState("");
   const handleSubmit = async (data) => {
     data.preventDefault();
     try {
