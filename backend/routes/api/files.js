@@ -5,8 +5,7 @@ const upload = multer({ dest: "images/" });
 const filesCtrl = require("../../controllers/upload");
 
 router.post("/", upload.single("image"), filesCtrl.create);
-router.get("/", filesCtrl.index);
-
+// router.get("/", filesCtrl.index);
 
 router.post(
   "/multipleFiles",

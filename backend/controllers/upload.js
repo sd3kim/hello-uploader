@@ -79,7 +79,7 @@ async function multipleFileUpload(req, res) {
 
 module.exports = {
   create,
-  index,
+
   multipleFileUpload,
   getMultipleFiles,
 };
