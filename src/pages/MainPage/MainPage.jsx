@@ -1,7 +1,6 @@
 import React from "react";
 import "../../css/styles.css";
 import Uploader from "../../components/Uploader/Uploader";
-import Gallery from "../../components/Gallery/Gallery";
 
 export default function MainPage() {
   return (
@@ -24,7 +23,6 @@ export default function MainPage() {
         </p>
       </header>
       <Uploader />
-      <Gallery />
     </div>
   );
 }

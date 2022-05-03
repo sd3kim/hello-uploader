@@ -3,15 +3,19 @@ import React, { useState } from "react";
 import "./Uploader.css";
 
 export default function Uploader() {
-  const [file, setFile] = useState();
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const [multipleFiles, setMultipleFiles] = useState([]);
+
+  const handleSubmit = async (data) => {
+    data.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("image", file);
-      const result = await axios.post("/api/images", formData, {
+      for (let i = 0; i < multipleFiles.length; i++) {
+        formData.append("files", multipleFiles[i]);
+      }
+      const result = await axios.post("/api/images/multipleFiles", formData, {
         headers: { "Content-Type": "multipart/form.data" },
       });
+      console.log(result.data);
     } catch (err) {
       console.log(err);
     }
@@ -19,15 +23,17 @@ export default function Uploader() {
   return (
     <div className="Wrapper">
       <div className="Upload">
-        <form onSubmit={handleSubmit}>
+        <form>
           <input
             type="file"
-            accept="image/png, image/pdf, image/jpeg"
-            filename={file}
+            accept="image/png, application/pdf, image/jpeg"
+            // filename={multipleFiles}
             multiple
-            onChange={(e) => setFile(e.target.files)}
+            onChange={(e) => setMultipleFiles(e.target.files)}
           ></input>
-          <button type="submit">Upload</button>
+          <button onClick={handleSubmit} type="submit">
+            Upload
+          </button>
         </form>
       </div>
     </div>

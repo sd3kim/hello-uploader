@@ -1,4 +1,5 @@
 const Files = require("../models/file");
+const MultipleFile = require("../models/multipleFiles");
 const fs = require("fs");
 const { uploadFile, getFileStream } = require("../config/s3");
 const fileSizeFormatter = (bytes, decimal) => {
@@ -26,7 +27,7 @@ async function create(req, res) {
       // user: req.user._id,
     });
     await files.save();
-    res.json(req.file);
+    res.json(files);
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
@@ -34,7 +35,7 @@ async function create(req, res) {
 }
 async function index(req, res) {
   try {
-    const result = await fs.promises.readdir("images/");
+    const result = await Files.find();
     res.json(result);
   } catch (err) {
     res.status(500).json(err);
@@ -43,7 +44,8 @@ async function index(req, res) {
 async function getMultipleFiles(req, res) {
   try {
     const files = await MultipleFile.find();
-    res.status(200).send(files);
+    console.log("this is files", files);
+    res.status(200).json(files);
   } catch (err) {
     res.status(400).send(err.message);
   }
@@ -51,7 +53,7 @@ async function getMultipleFiles(req, res) {
 async function multipleFileUpload(req, res) {
   try {
     let filesArray = [];
-    req.filesArray.forEach((element) => {
+    req.files.forEach((element) => {
       const file = {
         fileName: element.originalname,
         filePath: element.path,
@@ -60,11 +62,15 @@ async function multipleFileUpload(req, res) {
       };
       filesArray.push(file);
     });
-    const mutipleFiles = new mutipleFiles({
+    const multipleFiles = new MultipleFile({
       files: filesArray,
     });
-    await mutipleFiles.save();
-    res.status(201).json("file send successfully");
+    console.log("this is multiple files", multipleFiles);
+    await multipleFiles.save();
+    // const multipleFiles = await MultipleFile.create({
+    //   files: filesArray,
+    // });
+    res.status(201).json(multipleFiles);
   } catch (err) {
     res.status(500).json(err);
   }
