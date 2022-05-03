@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-
 export default function Gallery() {
   const [multipleFiles, setMultipleFiles] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -15,8 +15,6 @@ export default function Gallery() {
       }
     };
     fetchData();
-
-
   }, []);
   const getMultpileFiles = async () => {
     try {
@@ -26,10 +24,9 @@ export default function Gallery() {
       console.log(err);
     }
   };
-  console.log("this is multi files", { multipleFiles });
+  // console.log("this is multi files", { multipleFiles });
   return (
     <div>
-
       {multipleFiles &&
         multipleFiles.map((image, index) => (
           <div key={index}>
@@ -38,7 +35,6 @@ export default function Gallery() {
             ))}
           </div>
         ))}
-
     </div>
   );
 }
