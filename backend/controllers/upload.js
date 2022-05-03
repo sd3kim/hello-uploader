@@ -1,6 +1,6 @@
 const File = require("../models/file");
 const fs = require("fs");
-const { uploadFile, getFileStream, getAllFiles } = require("../config/s3");
+const { uploadFile, getAllFiles } = require("../config/s3");
 const fileSizeFormatter = (bytes, decimal) => {
   if (bytes === 0) {
     return "0 Bytes";
@@ -17,13 +17,13 @@ async function create(req, res) {
   try {
     console.log(req.file);
     // const result = await uploadFile(req.file);
-    console.log(result);
+    // console.log(result);
     const files = await File.create({
       fileName: req.file.originalname,
       filePath: req.file.path,
       fileType: req.file.mimetype,
       fileSize: fileSizeFormatter(req.file.size, 2),
-      // user: req.user._id,
+      user: req.user._id,
     });
     res.json(files);
   } catch (err) {
@@ -32,27 +32,16 @@ async function create(req, res) {
   }
 }
 
-// async function index(req, res) {
-//   try {
-//     const result = await Files.find();
-//     res.json(result);
-//   } catch (err) {
-//     console.log("error", err);
-//     res.status(500).json(err);
-//   }
-// }
 async function getFiles(req, res) {
   try {
-
-    const response = await getAllFiles();
-    console.log("this is response", response);
-    const keyArr = response.Contents.map((obj) => {
+    const awsResponse = await getAllFiles();
+    const keyArr = awsResponse.Contents.map((obj) => {
       return obj.Key;
     });
-
-    const files = await File.find();
-    console.log("this is files", files);
-    res.status(200).json(files);
+    console.log("this is key arr", awsResponse);
+    // const files = await File.find();
+    // console.log("this is files", files);
+    res.status(200).json(keyArr);
   } catch (err) {
     console.log(err);
     res.status(400).send(err.message);
