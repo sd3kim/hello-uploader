@@ -1,7 +1,6 @@
-// const Files = require("../models/file1");
-const MultipleFile = require("../models/file");
+const File = require("../models/file");
 const fs = require("fs");
-const { uploadFile, getFileStream } = require("../config/s3");
+const { uploadFile, getFileStream, getAllFiles } = require("../config/s3");
 const fileSizeFormatter = (bytes, decimal) => {
   if (bytes === 0) {
     return "0 Bytes";
@@ -19,7 +18,7 @@ async function create(req, res) {
     console.log(req.file);
     // const result = await uploadFile(req.file);
     console.log(result);
-    const files = await Files.create({
+    const files = await File.create({
       fileName: req.file.originalname,
       filePath: req.file.path,
       fileType: req.file.mimetype,
@@ -42,16 +41,22 @@ async function create(req, res) {
 //     res.status(500).json(err);
 //   }
 // }
-async function getMultipleFiles(req, res) {
+async function getFiles(req, res) {
   try {
-    const files = await MultipleFile.find();
+    const response = await getAllFiles();
+    console.log("this is response", response);
+    const keyArr = response.Contents.map((obj) => {
+      return obj.Key;
+    });
+    const files = await File.find();
     console.log("this is files", files);
     res.status(200).json(files);
   } catch (err) {
+    console.log(err);
     res.status(400).send(err.message);
   }
 }
-async function multipleFileUpload(req, res) {
+async function fileUpload(req, res) {
   try {
     let filesArray = [];
     req.files.forEach((element) => {
@@ -64,16 +69,16 @@ async function multipleFileUpload(req, res) {
       filesArray.push(file);
     });
     console.log("this is files array", filesArray);
-    const multiBucket = await uploadFile(filesArray);
-    const multipleFiles = new MultipleFile({
+    const bucket = await uploadFile(filesArray);
+    const files = new File({
       files: filesArray,
     });
-    console.log("this is multiple files", multipleFiles);
-    await multipleFiles.save();
-    // const multipleFiles = await MultipleFile.create({
+    console.log("this is multiple files", files);
+    await files.save();
+    // const files = await MultipleFile.create({
     //   files: filesArray,
     // });
-    res.status(201).json(multipleFiles);
+    res.status(201).json(files);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -82,6 +87,6 @@ async function multipleFileUpload(req, res) {
 
 module.exports = {
   create,
-  multipleFileUpload,
-  getMultipleFiles,
+  fileUpload,
+  getFiles,
 };
