@@ -1,5 +1,5 @@
-const Files = require("../models/file");
-const MultipleFile = require("../models/multipleFiles");
+const Files = require("../models/file1");
+const MultipleFile = require("../models/file");
 const fs = require("fs");
 const { uploadFile, getFileStream } = require("../config/s3");
 const fileSizeFormatter = (bytes, decimal) => {
@@ -17,7 +17,7 @@ const fileSizeFormatter = (bytes, decimal) => {
 async function create(req, res) {
   try {
     console.log(req.file);
-    const result = await uploadFile(req.file);
+    // const result = await uploadFile(req.file);
     console.log(result);
     const files = await Files.create({
       fileName: req.file.originalname,
@@ -63,6 +63,8 @@ async function multipleFileUpload(req, res) {
       };
       filesArray.push(file);
     });
+    console.log("this is files array", filesArray);
+    const multiBucket = await uploadFile(filesArray);
     const multipleFiles = new MultipleFile({
       files: filesArray,
     });
@@ -73,13 +75,13 @@ async function multipleFileUpload(req, res) {
     // });
     res.status(201).json(multipleFiles);
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 }
 
 module.exports = {
   create,
-
   multipleFileUpload,
   getMultipleFiles,
 };
