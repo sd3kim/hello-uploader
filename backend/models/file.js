@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const multipleFilesSchema = new Schema(
+const filesSchema = new Schema(
   {
     files: [
       {
@@ -23,4 +23,4 @@ const multipleFilesSchema = new Schema(
   },
   { timestamps: true }
 );
-module.exports = mongoose.model("MultipleFile", multipleFilesSchema);
+module.exports = mongoose.model("FileSchema", filesSchema);
