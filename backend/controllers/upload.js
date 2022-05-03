@@ -1,4 +1,4 @@
-const Files = require("../models/file1");
+// const Files = require("../models/file1");
 const MultipleFile = require("../models/file");
 const fs = require("fs");
 const { uploadFile, getFileStream } = require("../config/s3");
