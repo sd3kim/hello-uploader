@@ -1,6 +1,10 @@
 const File = require("../models/file");
-const fs = require("fs");
+const util = require("util");
 const { uploadFile, getAllFiles } = require("../config/s3");
+const fs = require("fs");
+
+const unlinkFile = util.promisify(fs.unlink);
+
 const fileSizeFormatter = (bytes, decimal) => {
   if (bytes === 0) {
     return "0 Bytes";
@@ -16,8 +20,7 @@ const fileSizeFormatter = (bytes, decimal) => {
 async function create(req, res) {
   try {
     console.log(req.file);
-    // const result = await uploadFile(req.file);
-    // console.log(result);
+    const result = await uploadFile(req.file);
     const files = await File.create({
       fileName: req.file.originalname,
       filePath: req.file.path,
@@ -32,21 +35,6 @@ async function create(req, res) {
   }
 }
 
-async function getFiles(req, res) {
-  try {
-    const awsResponse = await getAllFiles();
-    const keyArr = awsResponse.Contents.map((obj) => {
-      return obj.Key;
-    });
-    console.log("this is key arr", awsResponse);
-    // const files = await File.find();
-    // console.log("this is files", files);
-    res.status(200).json(keyArr);
-  } catch (err) {
-    console.log(err);
-    res.status(400).send(err.message);
-  }
-}
 async function fileUpload(req, res) {
   try {
     let filesArray = [];
@@ -64,15 +52,25 @@ async function fileUpload(req, res) {
     const files = new File({
       files: filesArray,
     });
-    console.log("this is multiple files", files);
+    req.files.forEach((element) => unlinkFile(element.path));
     await files.save();
-    // const files = await MultipleFile.create({
-    //   files: filesArray,
-    // });
     res.status(201).json(files);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
+  }
+}
+
+async function getFiles(req, res) {
+  try {
+    const awsResponse = await getAllFiles();
+    const keyArr = awsResponse.Contents.map((obj) => {
+      return obj.Key;
+    });
+    res.status(200).json(keyArr);
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err.message);
   }
 }
 

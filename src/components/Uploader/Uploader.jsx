@@ -4,23 +4,33 @@ import "./Uploader.css";
 
 export default function Uploader() {
   const [files, setFiles] = useState([]);
+  const [uploadedFile, setUploadedFiles] = useState([]);
   const [message, setMessage] = useState("");
+
   const handleSubmit = async (data) => {
     data.preventDefault();
     try {
-      const formData = new FormData();
-      for (let i = 0; i < files.length; i++) {
-        // files[i] = file you chose in the uploader
-        // file = name of the files
-        formData.append("file", files[i]);
+      if (files.length == 0) {
+        setMessage("Please upload a file.");
+      } else {
+        const formData = new FormData();
+        for (let i = 0; i < files.length; i++) {
+          // files[i] = file you chose in the uploader
+          // file = name of the files
+          formData.append("file", files[i]);
+        }
+        const result = await axios.post("/api/files", formData, {
+          headers: { "Content-Type": "multipart/form.data" },
+        });
+        // pass to gallery
+        setMessage("File uploaded.");
+        // setUploadedFiles([...uploadedFile, result.data]);
+        // console.log(result.data);
+        // console.log("what is uploadedfile: ", uploadedFile);
       }
-      const result = await axios.post("/api/files", formData, {
-        headers: { "Content-Type": "multipart/form.data" },
-      });
-      console.log(result.data);
     } catch (err) {
       console.log(err);
-      setMessage("Error while uploading");
+      setMessage("Error while uploading.");
     }
   };
   return (
@@ -30,7 +40,6 @@ export default function Uploader() {
           <input
             type="file"
             accept="image/png, application/pdf, image/jpeg"
-            // filename={files}
             multiple
             onChange={(e) => setFiles(e.target.files)}
           ></input>

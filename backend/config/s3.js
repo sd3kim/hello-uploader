@@ -11,27 +11,26 @@ const s3 = new S3({
   accessKeyId: ACCESS_KEY,
   secretAccessKey: SECRET_KEY,
 });
+
 async function uploadFile(file) {
   console.log("this is file path", file);
   const uploadParams = {
     Bucket: BUCKET_NAME,
   };
-  const responses = await Promise.all(
+  await Promise.all(
     file.map((param) => {
-      uploadParams.Body = param.filePath;
+      // console.log(param.filePath);
       uploadParams.Key = param.filePath.split("/")[1];
+      // uploadParams.Body = param.filePath;
+      // Creating a read stream to the uploaded file
+      uploadParams.Body = fs.createReadStream(param.filePath);
+      // console.log(uploadParams.Body);
+      // files/UUID
       s3.upload(uploadParams).promise();
     })
   );
-  console.log("this is responeses", responses);
 }
-// function getFileStream(fileKey) {
-//   const downloadParams = {
-//     Key: fileKey,
-//     Bucket: BUCKET_NAME,
-//   };
-//   return s3.getObject(downloadParams).createReadStream();
-// }
+
 function getAllFiles() {
   const params = {
     Bucket: BUCKET_NAME,
@@ -40,5 +39,4 @@ function getAllFiles() {
 }
 
 exports.uploadFile = uploadFile;
-// exports.getFileStream = getFileStream;
 exports.getAllFiles = getAllFiles;
