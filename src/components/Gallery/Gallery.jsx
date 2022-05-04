@@ -8,8 +8,13 @@ export default function Gallery() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const filelist = await getFiles();
-        setFiles(filelist);
+
+        let jwt = localStorage.getItem("token");
+        const { data } = await axios.get("/api/getFiles", {
+          headers: { Authorization: "Bearer " + jwt },
+        });
+        setFiles(data);
+
       } catch (err) {
         console.log(err);
       }
@@ -17,20 +22,14 @@ export default function Gallery() {
     fetchData();
   }, []);
 
-  const getFiles = async () => {
-    try {
-      const { data } = await axios.get("/api/getFiles");
-      return data;
-    } catch (err) {
-      console.log(err);
-    }
-  };
+
   // console.log("this is multi files", { files });
   // const borderStyles = {
   //   border: "2px solid rgba(0, 0, 0, 1)",
   // };
   return (
     <div>
+      {/* {files && files.map((file) => console.log(`/files/${file}`))} */}
       {/* {files &&
         files.map((image, index) => (
           <div key={index}>
@@ -68,20 +67,26 @@ export default function Gallery() {
           </tbody>
         </Table>
       </div>
+
+
       {/* {files &&
-        files.map(
-          (nestedFile) =>
-            nestedFile.files &&
-            nestedFile.files.map((name) => console.log("show: ", name.files))
-        )} */}
-
-      {/* {files && files.map((name) => console.log("show this!!: ", name.files))} */}
-
-      {files &&
-        files.map((id, index) => (
+        files.map((el, index) => (
           <img
             key={index}
-            src={`https://file-uploader123.s3.amazonaws.com/${id}`}
+            src={`https://file-uploader123.s3.amazonaws.com/${
+              el.filePath.split("/")[1]
+            }`}
+          />
+        ))} */}
+
+      {files &&
+        files.map((el, index) => (
+          <img
+            key={index}
+            src={`https://fuploader.s3.amazonaws.com/${
+              el.filePath.split("/")[1]
+            }`}
+
           />
         ))}
     </div>

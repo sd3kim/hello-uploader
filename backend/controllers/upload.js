@@ -17,23 +17,6 @@ const fileSizeFormatter = (bytes, decimal) => {
   );
 };
 
-async function create(req, res) {
-  try {
-    console.log(req.file);
-    const result = await uploadFile(req.file);
-    const files = await File.create({
-      fileName: req.file.originalname,
-      filePath: req.file.path,
-      fileType: req.file.mimetype,
-      fileSize: fileSizeFormatter(req.file.size, 2),
-      user: req.user._id,
-    });
-    res.json(files);
-  } catch (err) {
-    console.log(err);
-    res.status(400).json(err.message);
-  }
-}
 
 async function fileUpload(req, res) {
   try {
@@ -44,16 +27,16 @@ async function fileUpload(req, res) {
         filePath: element.path,
         fileType: element.mimetype,
         fileSize: fileSizeFormatter(element.size, 2),
+        user: req.user._id,
       };
       filesArray.push(file);
     });
     console.log("this is files array", filesArray);
     const bucket = await uploadFile(filesArray);
-    const files = new File({
-      files: filesArray,
-    });
+
+    const files = await File.insertMany(filesArray);
     req.files.forEach((element) => unlinkFile(element.path));
-    await files.save();
+
     res.status(201).json(files);
   } catch (err) {
     console.log(err);
@@ -64,10 +47,18 @@ async function fileUpload(req, res) {
 async function getFiles(req, res) {
   try {
     const awsResponse = await getAllFiles();
+
+
+    console.log("this is aws response", awsResponse);
     const keyArr = awsResponse.Contents.map((obj) => {
       return obj.Key;
     });
-    res.status(200).json(keyArr);
+    const key = await File.find({ user: req.user._id })
+      .sort({ createdAt: "desc" })
+      .exec();
+    console.log("key Arr ", key);
+    res.status(200).json(key);
+
   } catch (err) {
     console.log(err);
     res.status(400).send(err.message);
@@ -75,7 +66,6 @@ async function getFiles(req, res) {
 }
 
 module.exports = {
-  create,
   fileUpload,
   getFiles,
 };
