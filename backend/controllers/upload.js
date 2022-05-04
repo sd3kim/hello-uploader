@@ -17,6 +17,7 @@ const fileSizeFormatter = (bytes, decimal) => {
   );
 };
 
+
 async function fileUpload(req, res) {
   try {
     let filesArray = [];
@@ -32,8 +33,10 @@ async function fileUpload(req, res) {
     });
     console.log("this is files array", filesArray);
     const bucket = await uploadFile(filesArray);
+
     const files = await File.insertMany(filesArray);
     req.files.forEach((element) => unlinkFile(element.path));
+
     res.status(201).json(files);
   } catch (err) {
     console.log(err);
@@ -45,6 +48,7 @@ async function getFiles(req, res) {
   try {
     const awsResponse = await getAllFiles();
 
+
     console.log("this is aws response", awsResponse);
     const keyArr = awsResponse.Contents.map((obj) => {
       return obj.Key;
@@ -54,6 +58,7 @@ async function getFiles(req, res) {
       .exec();
     console.log("key Arr ", key);
     res.status(200).json(key);
+
   } catch (err) {
     console.log(err);
     res.status(400).send(err.message);
