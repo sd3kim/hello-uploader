@@ -4,7 +4,9 @@ import "./Uploader.css";
 
 export default function Uploader() {
   const [files, setFiles] = useState([]);
+  const [uploadedFile, setUploadedFiles] = useState([]);
   const [message, setMessage] = useState("");
+
   const handleSubmit = async (data) => {
     data.preventDefault();
     try {
@@ -35,7 +37,6 @@ export default function Uploader() {
           <input
             type="file"
             accept="image/png, application/pdf, image/jpeg"
-            // filename={files}
             multiple
             onChange={(e) => setFiles(e.target.files)}
           ></input>
