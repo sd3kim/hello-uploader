@@ -14,8 +14,13 @@ export default function Uploader() {
         // file = name of the files
         formData.append("file", files[i]);
       }
+      let jwt = localStorage.getItem("token");
+      console.log("this is jwt", jwt);
       const result = await axios.post("/api/files", formData, {
-        headers: { "Content-Type": "multipart/form.data" },
+        headers: {
+          "Content-Type": "multipart/form.data",
+          Authorization: "Bearer " + jwt,
+        },
       });
       console.log(result.data);
     } catch (err) {

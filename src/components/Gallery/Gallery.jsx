@@ -8,8 +8,9 @@ export default function Gallery() {
     const fetchData = async () => {
       try {
         const filelist = await getFiles();
+        console.log("this is filelist", filelist);
         setFiles(filelist);
-        console.log(filelist);
+        console.log("this is files in gallery", { files });
       } catch (err) {
         console.log(err);
       }
@@ -18,16 +19,20 @@ export default function Gallery() {
   }, []);
   const getFiles = async () => {
     try {
-      const { data } = await axios.get("/api/getFiles");
+      let jwt = localStorage.getItem("token");
+      const { data } = await axios.get("/api/getFiles", {
+        headers: { Authorization: "Bearer " + jwt },
+      });
       console.log("this is data", data);
       return data;
     } catch (err) {
       console.log(err);
     }
   };
-  // console.log("this is multi files", { files });
+  console.log("this is multi files", { files });
   return (
     <div>
+      {files && files.map((file) => console.log(`/files/${file}`))}
       {/* {files &&
         files.map((image, index) => (
           <div key={index}>
@@ -37,9 +42,7 @@ export default function Gallery() {
           </div>
         ))} */}
       {files &&
-        files.map((image, index) => (
-          <img key={index} src={`/files/${image}`} />
-        ))}
+        files.map((file, index) => <img key={index} src={`/files/${file}`} />)}
     </div>
   );
 }
