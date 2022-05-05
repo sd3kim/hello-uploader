@@ -31,9 +31,12 @@ export default function Uploader() {
                 Math.round((progressEvent.loaded * 100) / progressEvent.total)
               )
             );
+            // clears progress bar after 4 seconds
+            setTimeout(() => setUploadPercentage(0), 4000);
           },
         });
         setMessage("File(s) successfully uploaded.");
+        setTimeout(() => setMessage("Upload another file?"), 4000);
       }
     } catch (err) {
       console.log(err);
@@ -43,7 +46,18 @@ export default function Uploader() {
 
   return (
     <div className="Wrapper">
-      {message ? <UploaderMessage uploadMsg={message} /> : null}
+      <div>
+        {message ? (
+          <UploaderMessage uploadMsg={message} />
+        ) : (
+          <img
+            className="Temp-image"
+            src={
+              "https://www.filemail.com/images/marketing/upload-your-files.svg"
+            }
+          />
+        )}
+      </div>
       <div className="Upload">
         <form>
           <input
@@ -52,6 +66,8 @@ export default function Uploader() {
             multiple
             onChange={(e) => setFiles(e.target.files)}
           ></input>
+        </form>
+        <div>
           <ProgressBar percentage={uploadPercentage} />
           <button
             className="Upload-button"
@@ -60,9 +76,8 @@ export default function Uploader() {
           >
             Upload
           </button>
-        </form>
+        </div>
       </div>
-      {/* <div style={{ color: "red", marginTop: "5px" }}>{message}</div> */}
     </div>
   );
 }

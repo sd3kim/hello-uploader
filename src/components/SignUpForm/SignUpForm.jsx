@@ -49,7 +49,7 @@ export default class SignUpForm extends Component {
             <div className="row d-flex align-items-center justify-content-center h-100">
               <div className="col-md-8 col-lg-7 col-xl-6">
                 <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                  src="https://account.splashtrack.com/Content/V2/img/user-login-bg.png"
                   className="img-fluid"
                   alt="Phone image"
                 />
@@ -66,7 +66,7 @@ export default class SignUpForm extends Component {
                       value={this.state.name}
                       onChange={this.handleChange}
                     />
-                    <label className="form-label">Name</label>
+                    <label className="form-label">Full Name</label>
                   </div>
                   <div className="form-outline mb-4">
                     <input
@@ -102,7 +102,7 @@ export default class SignUpForm extends Component {
                       onChange={this.handleChange}
                       required
                     />
-                    <label className="form-label">confirm</label>
+                    <label className="form-label">Confirm Password</label>
                   </div>
                   <button
                     type="submit"

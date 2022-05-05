@@ -60,9 +60,6 @@ export default function Login(props) {
           Login
         </button>
       </form>
-      <p>
-        Not a Member? &nbsp;<Link to="/account/signup">Sign up here</Link>
-      </p>
     </div>
   );
 }

@@ -39,11 +39,7 @@ export default function App() {
             <Route
               path="/files"
               element={
-<<<<<<< HEAD
-                <ViewFilesPage setUserInState={setUserInState} user={user} />
-=======
                 <ViewFilesPage user={user} setUserInState={setUserInState} />
->>>>>>> 817d34966dacb8e9b0e06eb7e7a0d6ae9457d402
               }
             />
             <Route
@@ -54,6 +50,9 @@ export default function App() {
             />
           </Routes>
           <NavBar />
+          <footer className="footer">
+            Copyright © GA - Team Java the Hut 2022
+          </footer>
         </div>
       ) : (
         <AuthPage setUserInState={setUserInState} />

@@ -8,8 +8,8 @@ export default function UserLogOut(props) {
 
   return (
     <div className="UserLogOut">
-      <section className="vh-100">
-        <div className="container py-5 h-100">
+      <section className="vh-50">
+        <div className="container py-5 h-50">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-md-12 col-xl-4">
               <div className="card">
@@ -18,20 +18,22 @@ export default function UserLogOut(props) {
                     <img
                       src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
                       className="rounded-circle img-fluid"
-                      style={{ width: "300px" }}
+                      style={{ width: "200px" }}
                     />
                   </div>
-                  <h4 className="mb-2">{props.user?.name}</h4>
+                  <h4 className="mb-2" style={{ color: "#242F40" }}>
+                    {props.user?.name}
+                  </h4>
                   <p className="text-muted mb-4">
-                    <a href="#!">{props.user?.email}</a>
+                    <a style={{ color: "#242F40" }}>{props.user?.email}</a>
                   </p>
                   <div className="mb-4 pb-2">
                     <button
                       type="submit"
                       onClick={handleLogout}
-                      className="btn btn-outline-primary btn-floating"
+                      className="btn btn-primary btn-floating"
                     >
-                      logout
+                      Logout
                       <i className="fab fa-skype fa-lg"></i>
                     </button>
                   </div>
@@ -41,15 +43,6 @@ export default function UserLogOut(props) {
           </div>
         </div>
       </section>
-      {/* <div classNameName="logOut">Name: {props.user?.name}</div>
-      <div classNameName="logOut">Email: {props.user?.email}</div>
-      <button
-        classNameName="btn-sm btn btn-primary btn-lg btn-block"
-        type="submit"
-        onClick={handleLogout}
-      >
-        Logout
-      </button> */}
     </div>
   );
 }

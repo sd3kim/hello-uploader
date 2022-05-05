@@ -9,12 +9,10 @@ export default function Gallery(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // /api/getFiles is not returning an array
         let jwt = localStorage.getItem("token");
         const { data } = await axios.get("/api/getFiles", {
           headers: { Authorization: "Bearer " + jwt },
         });
-        // need to set data as an array
         setFiles(data);
       } catch (err) {
         console.log(err);
@@ -22,16 +20,15 @@ export default function Gallery(props) {
     };
     fetchData();
   }, []);
-  console.log(props);
   return (
     <div>
-      <div className="table">
-        <Table striped bordered hover size="sm">
+      <div className="Table">
+        <Table striped bordered size="sm">
           <thead>
             <tr>
               <th>File Preview</th>
               <th>File Name</th>
-              <th>File Type (png, pdf, jpeg)</th>
+              <th>File Type (pdf, png, jpeg)</th>
               <th>File Size</th>
               <th>Uploaded At</th>
               <th>Uploaded By</th>
