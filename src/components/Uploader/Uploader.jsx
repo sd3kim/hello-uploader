@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
+import ProgressBar from "../ProgressBar/ProgressBar";
+import UploaderMessage from "../UploaderMessage/UploaderMessage";
 import "./Uploader.css";
 
 export default function Uploader() {
   const [files, setFiles] = useState([]);
   const [message, setMessage] = useState("");
+  const [uploadPercentage, setUploadPercentage] = useState(0);
 
   const handleSubmit = async (data) => {
     data.preventDefault();
@@ -22,8 +25,14 @@ export default function Uploader() {
             "Content-Type": "multipart/form.data",
             Authorization: "Bearer " + jwt,
           },
+          onUploadProgress: (progressEvent) => {
+            setUploadPercentage(
+              parseInt(
+                Math.round((progressEvent.loaded * 100) / progressEvent.total)
+              )
+            );
+          },
         });
-        // console.log(result.data);
         setMessage("File(s) successfully uploaded.");
       }
     } catch (err) {
@@ -34,6 +43,7 @@ export default function Uploader() {
 
   return (
     <div className="Wrapper">
+      {message ? <UploaderMessage uploadMsg={message} /> : null}
       <div className="Upload">
         <form>
           <input
@@ -42,6 +52,7 @@ export default function Uploader() {
             multiple
             onChange={(e) => setFiles(e.target.files)}
           ></input>
+          <ProgressBar percentage={uploadPercentage} />
           <button
             className="Upload-button"
             onClick={handleSubmit}
@@ -49,9 +60,9 @@ export default function Uploader() {
           >
             Upload
           </button>
-          <div style={{ color: "red", marginTop: "5px" }}>{message}</div>
         </form>
       </div>
+      {/* <div style={{ color: "red", marginTop: "5px" }}>{message}</div> */}
     </div>
   );
 }
