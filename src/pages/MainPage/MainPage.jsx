@@ -8,8 +8,8 @@ export default function MainPage() {
     <div>
       <header className="masthead bg-info text-white text-center">
         <h1
-          className="masthead-heading text-uppercase mb-0"
-          style={{ color: "yellow", marginTop: "15px" }}
+          className="masthead-heading text-uppercase"
+          style={{ color: "yellow" }}
         >
           Hello, Uploader!
         </h1>

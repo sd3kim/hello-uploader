@@ -43,7 +43,18 @@ export default function Uploader() {
 
   return (
     <div className="Wrapper">
-      {message ? <UploaderMessage uploadMsg={message} /> : null}
+      <div>
+        {message ? (
+          <UploaderMessage uploadMsg={message} />
+        ) : (
+          <img
+            className="Temp-image"
+            src={
+              "https://www.filemail.com/images/marketing/upload-your-files.svg"
+            }
+          />
+        )}
+      </div>
       <div className="Upload">
         <form>
           <input

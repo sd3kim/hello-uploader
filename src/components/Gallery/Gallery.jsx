@@ -31,7 +31,7 @@ export default function Gallery(props) {
             <tr>
               <th>File Preview</th>
               <th>File Name</th>
-              <th>File Type (png, pdf, jpeg)</th>
+              <th>File Type (pdf, png, jpeg)</th>
               <th>File Size</th>
               <th>Uploaded At</th>
               <th>Uploaded By</th>
