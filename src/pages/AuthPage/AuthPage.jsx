@@ -5,6 +5,7 @@ import SignUpForm from "../../components/SignUpForm/SignUpForm";
 export default class AuthPage extends React.Component {
   state = {
     showLogin: true,
+    active: true,
   };
 
   render() {
@@ -12,13 +13,18 @@ export default class AuthPage extends React.Component {
       <main>
         <div>
           <h3
-            onClick={() => this.setState({ showLogin: !this.state.showLogin })}
+            onClick={() =>
+              this.setState({
+                showLogin: !this.state.showLogin,
+                active: !this.state.active,
+              })
+            }
           >
             {/* {this.state.showLogin ? ( */}
             <ul className="nav nav-pills nav-justified mb-3" id="ex1">
               <li className="nav-item">
                 <a
-                  className="nav-link active"
+                  className={this.state.active ? "nav-link active" : "nav-link"}
                   id="tab-login"
                   data-mdb-toggle="pill"
                   href="#pills-login"
@@ -30,7 +36,7 @@ export default class AuthPage extends React.Component {
               </li>
               <li className="nav-item" role="presentation">
                 <a
-                  className="nav-link"
+                  className={this.state.active ? "nav-link" : "nav-link active"}
                   id="tab-register"
                   data-mdb-toggle="pill"
                   href="#pills-register"

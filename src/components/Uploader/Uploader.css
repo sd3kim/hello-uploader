@@ -17,3 +17,18 @@
   height: 200px;
   background-color: rgb(194, 193, 193);
 }
+
+.Upload-button {
+  color: #fff;
+  background-color: orange;
+  height: 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+}
+
+.Submit-button:hover {
+  background-color: darkorange;
+}

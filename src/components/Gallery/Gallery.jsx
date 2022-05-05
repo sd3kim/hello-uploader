@@ -22,7 +22,7 @@ export default function Gallery(props) {
     };
     fetchData();
   }, []);
-  console.log("this is files", files);
+  console.log({ files });
   return (
     <div>
       <div className="table">
@@ -43,13 +43,22 @@ export default function Gallery(props) {
               files.map((el, idx) => (
                 <tr>
                   <td className="image-preview-td">
-                    <img
-                      className="image-preview"
-                      key={idx}
-                      src={`https://file-uploader123.s3.amazonaws.com/${
-                        el.filePath.split("/")[1]
-                      }`}
-                    />
+                    {el.fileType == "application/pdf" ? (
+                      <img
+                        className="image-preview"
+                        src={
+                          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/1200px-PDF_file_icon.svg.png"
+                        }
+                      />
+                    ) : (
+                      <img
+                        className="image-preview"
+                        key={idx}
+                        src={`https://file-uploader123.s3.amazonaws.com/${
+                          el.filePath.split("/")[1]
+                        }`}
+                      />
+                    )}
                   </td>
                   {/* File Name */}
                   <td key={idx}>{el.fileName.split(".")[0]}</td>
