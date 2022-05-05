@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-import DropZone from "../DropZone/DropZone";
 import "./Uploader.css";
 
 export default function Uploader() {
@@ -52,7 +51,6 @@ export default function Uploader() {
           </button>
           <div style={{ color: "red", marginTop: "5px" }}>{message}</div>
         </form>
-        {/* <DropZone /> */}
       </div>
     </div>
   );

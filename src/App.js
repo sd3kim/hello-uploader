@@ -6,7 +6,6 @@ import NavBar from "./components/NavBar/NavBar";
 import MainPage from "./pages/MainPage/MainPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ViewFilesPage from "./pages/ViewFilesPage/ViewFilesPage";
-import Dropzone from "./components/DropZone/DropZone";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
