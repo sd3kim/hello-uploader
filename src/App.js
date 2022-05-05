@@ -15,7 +15,6 @@ export default function App() {
 
   const setUserInState = (incomingUserData) => {
     setUser(incomingUserData);
-    console.log(user);
   };
 
   useEffect(() => {
@@ -46,10 +45,6 @@ export default function App() {
                 <ProfilePage setUserInState={setUserInState} user={user} />
               }
             />
-            {/* <Route
-              path="/signUp"
-              element={<SignUpForm setUserInState={setUserInState} />}
-            /> */}
           </Routes>
           <NavBar />
         </div>

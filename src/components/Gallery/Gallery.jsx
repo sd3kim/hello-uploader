@@ -8,20 +8,17 @@ export default function Gallery() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-
         let jwt = localStorage.getItem("token");
         const { data } = await axios.get("/api/getFiles", {
           headers: { Authorization: "Bearer " + jwt },
         });
         setFiles(data);
-
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
   }, []);
-
 
   // console.log("this is multi files", { files });
   // const borderStyles = {
@@ -68,7 +65,6 @@ export default function Gallery() {
         </Table>
       </div>
 
-
       {/* {files &&
         files.map((el, index) => (
           <img
@@ -86,7 +82,6 @@ export default function Gallery() {
             src={`https://fuploader.s3.amazonaws.com/${
               el.filePath.split("/")[1]
             }`}
-
           />
         ))}
     </div>
