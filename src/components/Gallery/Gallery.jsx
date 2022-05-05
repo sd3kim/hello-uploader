@@ -22,7 +22,7 @@ export default function Gallery(props) {
     };
     fetchData();
   }, []);
-
+  console.log("this is files", files);
   return (
     <div>
       <div className="table">
@@ -60,13 +60,12 @@ export default function Gallery(props) {
                   {/* Uploaded At */}
                   <td key={idx}>{el.updatedAt.split("T")[0]}</td>
                   {/* /* Uploaded By */}
-                  <td>{el.user}</td>
+                  <td key={idx}>{el.user}</td>
                 </tr>
               ))}
           </tbody>
         </Table>
       </div>
-
       {/* {files &&
         files.map((el, index) => (
           <img

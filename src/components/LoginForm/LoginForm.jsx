@@ -67,9 +67,7 @@ export default class SignUpForm extends Component {
                       onChange={this.handleChange}
                       required
                     />
-                    <label className="form-label" for="form1Example13">
-                      Email address
-                    </label>
+                    <label className="form-label">Email address</label>
                   </div>
 
                   <div className="form-outline mb-4">
@@ -82,9 +80,7 @@ export default class SignUpForm extends Component {
                       onChange={this.handleChange}
                       required
                     />
-                    <label className="form-label" for="form1Example23">
-                      Password
-                    </label>
+                    <label className="form-label">Password</label>
                   </div>
 
                   <button

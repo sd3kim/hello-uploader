@@ -66,9 +66,7 @@ export default class SignUpForm extends Component {
                       value={this.state.name}
                       onChange={this.handleChange}
                     />
-                    <label className="form-label" for="form1Example13">
-                      Name
-                    </label>
+                    <label className="form-label">Name</label>
                   </div>
                   <div className="form-outline mb-4">
                     <input
@@ -79,9 +77,7 @@ export default class SignUpForm extends Component {
                       value={this.state.email}
                       onChange={this.handleChange}
                     />
-                    <label className="form-label" for="form1Example13">
-                      Email Address
-                    </label>
+                    <label className="form-label">Email Address</label>
                   </div>
 
                   <div className="form-outline mb-4">
@@ -94,9 +90,7 @@ export default class SignUpForm extends Component {
                       onChange={this.handleChange}
                       required
                     />
-                    <label className="form-label" for="form1Example23">
-                      Password
-                    </label>
+                    <label className="form-label">Password</label>
                   </div>
                   <div className="form-outline mb-4">
                     <input
@@ -108,9 +102,7 @@ export default class SignUpForm extends Component {
                       onChange={this.handleChange}
                       required
                     />
-                    <label className="form-label" for="form1Example23">
-                      confirm
-                    </label>
+                    <label className="form-label">confirm</label>
                   </div>
                   <button
                     type="submit"
