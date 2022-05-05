@@ -37,9 +37,6 @@ export default class SignUpForm extends Component {
       this.setState({ error: "Sign Up Failed - Try Again" });
     }
   };
-  // handleSignUp = () => {
-  //   <SignUpForm />;
-  // };
 
   render() {
     return (
@@ -49,7 +46,7 @@ export default class SignUpForm extends Component {
             <div className="row d-flex align-items-center justify-content-center h-100">
               <div className="col-md-8 col-lg-7 col-xl-6">
                 <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                  src="https://account.splashtrack.com/Content/V2/img/user-login-bg.png"
                   className="img-fluid"
                   alt="Phone image"
                 />
@@ -87,7 +84,7 @@ export default class SignUpForm extends Component {
                     type="submit"
                     className="btn btn-primary btn-lg btn-block"
                   >
-                    Login in
+                    Login
                   </button>
 
                   <br />
