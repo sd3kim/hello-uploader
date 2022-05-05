@@ -21,9 +21,11 @@ export default function UserLogOut(props) {
                       style={{ width: "200px" }}
                     />
                   </div>
-                  <h4 className="mb-2">{props.user?.name}</h4>
+                  <h4 className="mb-2" style={{ color: "#242F40" }}>
+                    {props.user?.name}
+                  </h4>
                   <p className="text-muted mb-4">
-                    <a href="#!">{props.user?.email}</a>
+                    <a style={{ color: "#242F40" }}>{props.user?.email}</a>
                   </p>
                   <div className="mb-4 pb-2">
                     <button
