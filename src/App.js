@@ -46,10 +46,10 @@ export default function App() {
                 <ProfilePage setUserInState={setUserInState} user={user} />
               }
             />
-            <Route
+            {/* <Route
               path="/signUp"
               element={<SignUpForm setUserInState={setUserInState} />}
-            />
+            /> */}
           </Routes>
           <NavBar />
         </div>
