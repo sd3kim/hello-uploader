@@ -8,9 +8,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ViewFilesPage from "./pages/ViewFilesPage/ViewFilesPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
 export default function App() {
-
   const [user, setUser] = useState();
   const [images, setImages] = useState([]);
 
@@ -40,11 +38,16 @@ export default function App() {
         <div>
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="/files" element={<ViewFilesPage />} />
+            <Route
+              path="/files"
+              element={
+                <ViewFilesPage user={user} setUserInState={setUserInState} />
+              }
+            />
             <Route
               path="/profile"
               element={
-                <ProfilePage setUserInState={setUserInState} user={user} />
+                <ProfilePage user={user} setUserInState={setUserInState} />
               }
             />
           </Routes>
@@ -56,4 +59,3 @@ export default function App() {
     </div>
   );
 }
-

@@ -1,15 +1,21 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
+import "./Gallery.css";
 
-export default function Gallery() {
+export default function Gallery(props) {
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const filelist = await getFiles();
-        setFiles(filelist);
+        // /api/getFiles is not returning an array
+        let jwt = localStorage.getItem("token");
+        const { data } = await axios.get("/api/getFiles", {
+          headers: { Authorization: "Bearer " + jwt },
+        });
+        // need to set data as an array
+        setFiles(data);
       } catch (err) {
         console.log(err);
       }
@@ -17,32 +23,13 @@ export default function Gallery() {
     fetchData();
   }, []);
 
-  const getFiles = async () => {
-    try {
-      const { data } = await axios.get("/api/getFiles");
-      return data;
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  // console.log("this is multi files", { files });
-  // const borderStyles = {
-  //   border: "2px solid rgba(0, 0, 0, 1)",
-  // };
   return (
     <div>
-      {/* {files &&
-        files.map((image, index) => (
-          <div key={index}>
-            {image.files.map((file, idx) => (
-              <img key={idx} src={`/files/${file.filePath}`} />
-            ))}
-          </div>
-        ))} */}
       <div className="table">
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
+              <th>File Preview</th>
               <th>File Name</th>
               <th>File Type (png, pdf, jpeg)</th>
               <th>File Size</th>
@@ -51,39 +38,55 @@ export default function Gallery() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Cat.png</td>
-              <td>PNG</td>
-              <td>300 MB</td>
-              <td>MAY-03-2022</td>
-              <td>user</td>
-            </tr>
-            <tr>
-              <td>Dog.png</td>
-              <td>PNG</td>
-              <td>200 MB</td>
-              <td>MAY-03-2022</td>
-              <td>user</td>
-            </tr>
+            {/* File Preview */}
+            {files &&
+              files.map((el, idx) => (
+                <tr>
+                  <td className="image-preview-td">
+                    <img
+                      className="image-preview"
+                      key={idx}
+                      src={`https://file-uploader123.s3.amazonaws.com/${
+                        el.filePath.split("/")[1]
+                      }`}
+                    />
+                  </td>
+                  {/* File Name */}
+                  <td key={idx}>{el.fileName.split(".")[0]}</td>
+                  {/* File Type */}
+                  <td key={idx}>{el.fileType.split("/")[1]}</td>
+                  {/* File Size */}
+                  <td key={idx}>{el.fileSize}</td>
+                  {/* Uploaded At */}
+                  <td key={idx}>{el.updatedAt.split("T")[0]}</td>
+                  {/* /* Uploaded By */}
+                  <td>{el.user}</td>
+                </tr>
+              ))}
           </tbody>
         </Table>
       </div>
+
       {/* {files &&
-        files.map(
-          (nestedFile) =>
-            nestedFile.files &&
-            nestedFile.files.map((name) => console.log("show: ", name.files))
-        )} */}
+        files.map((el, index) => (
+          <img
+            className="image-preview"
+            key={index}
+            src={`https://file-uploader123.s3.amazonaws.com/${
+              el.filePath.split("/")[1]
+            }`}
+          />
+        ))} */}
 
-      {/* {files && files.map((name) => console.log("show this!!: ", name.files))} */}
-
-      {files &&
-        files.map((id, index) => (
+      {/* {files &&
+        files.map((el, index) => (
           <img
             key={index}
-            src={`https://file-uploader123.s3.amazonaws.com/${id}`}
+            src={`https://fuploader.s3.amazonaws.com/${
+              el.filePath.split("/")[1]
+            }`}
           />
-        ))}
+        ))} */}
     </div>
   );
 }

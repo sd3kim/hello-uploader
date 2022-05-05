@@ -23,9 +23,7 @@ export default function MainPage() {
           PDF - PNG - JPEG
         </p>
       </header>
-
       <Uploader />
-
     </div>
   );
 }

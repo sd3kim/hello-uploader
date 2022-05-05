@@ -4,14 +4,13 @@ import "./Uploader.css";
 
 export default function Uploader() {
   const [files, setFiles] = useState([]);
-  const [uploadedFile, setUploadedFiles] = useState([]);
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (data) => {
     data.preventDefault();
     try {
       if (files.length == 0) {
-        setMessage("Please upload a file.");
+        setMessage("Please select a file.");
       } else {
         const formData = new FormData();
         for (let i = 0; i < files.length; i++) {
@@ -19,20 +18,23 @@ export default function Uploader() {
           // file = name of the files
           formData.append("file", files[i]);
         }
+        let jwt = localStorage.getItem("token");
+        console.log("this is jwt", jwt);
         const result = await axios.post("/api/files", formData, {
-          headers: { "Content-Type": "multipart/form.data" },
+          headers: {
+            "Content-Type": "multipart/form.data",
+            Authorization: "Bearer " + jwt,
+          },
         });
-        // pass to gallery
-        setMessage("File uploaded.");
-        // setUploadedFiles([...uploadedFile, result.data]);
-        // console.log(result.data);
-        // console.log("what is uploadedfile: ", uploadedFile);
+        console.log(result.data);
+        setMessage("File successfully uploaded!");
       }
     } catch (err) {
       console.log(err);
-      setMessage("Error while uploading.");
+      setMessage("Error while uploading");
     }
   };
+
   return (
     <div className="Wrapper">
       <div className="Upload">
