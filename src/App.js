@@ -37,7 +37,12 @@ export default function App() {
         <div>
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="/files" element={<ViewFilesPage />} />
+            <Route
+              path="/files"
+              element={
+                <ViewFilesPage setUserInState={setUserInState} user={user} />
+              }
+            />
             <Route
               path="/profile"
               element={

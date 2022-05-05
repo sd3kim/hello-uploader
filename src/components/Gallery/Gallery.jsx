@@ -22,7 +22,7 @@ export default function Gallery(props) {
     };
     fetchData();
   }, []);
-  console.log({ files });
+  console.log(props);
   return (
     <div>
       <div className="table">
@@ -69,7 +69,7 @@ export default function Gallery(props) {
                   {/* Uploaded At */}
                   <td key={idx}>{el.updatedAt.split("T")[0]}</td>
                   {/* /* Uploaded By */}
-                  <td>{el.user}</td>
+                  <td>{props.user?.name}</td>
                 </tr>
               ))}
           </tbody>
