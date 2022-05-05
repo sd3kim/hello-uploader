@@ -2,9 +2,8 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   align-items: center;
-  /* align-content: center;
-  justify-content: center; */
-  margin: 5px;
+  margin: 10px;
+  gap: 10px;
 }
 
 .Upload {
@@ -14,9 +13,7 @@
   border: 2px;
   border-style: dashed;
   padding-top: 10px;
-  /* width: 500px; */
   height: 200px;
-  /* background-color: rgb(194, 193, 193); */
 }
 
 .Upload-button {
@@ -37,5 +34,5 @@
 }
 
 .Temp-image {
-  width: 80%;
+  width: 60%;
 }

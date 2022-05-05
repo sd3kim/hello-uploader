@@ -73,7 +73,6 @@ export default function Uploader() {
           </button>
         </form>
       </div>
-      {/* <div style={{ color: "red", marginTop: "5px" }}>{message}</div> */}
     </div>
   );
 }
