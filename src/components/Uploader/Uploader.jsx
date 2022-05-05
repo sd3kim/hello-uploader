@@ -31,9 +31,12 @@ export default function Uploader() {
                 Math.round((progressEvent.loaded * 100) / progressEvent.total)
               )
             );
+            // clears progress bar after 4 seconds
+            setTimeout(() => setUploadPercentage(0), 4000);
           },
         });
         setMessage("File(s) successfully uploaded.");
+        setTimeout(() => setMessage("Upload another file?"), 4000);
       }
     } catch (err) {
       console.log(err);

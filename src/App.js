@@ -50,6 +50,9 @@ export default function App() {
             />
           </Routes>
           <NavBar />
+          <footer className="footer">
+            Copyright © GA - Team Java the Hut 2022
+          </footer>
         </div>
       ) : (
         <AuthPage setUserInState={setUserInState} />

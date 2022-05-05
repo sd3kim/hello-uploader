@@ -41,15 +41,6 @@ export default function UserLogOut(props) {
           </div>
         </div>
       </section>
-      {/* <div classNameName="logOut">Name: {props.user?.name}</div>
-      <div classNameName="logOut">Email: {props.user?.email}</div>
-      <button
-        classNameName="btn-sm btn btn-primary btn-lg btn-block"
-        type="submit"
-        onClick={handleLogout}
-      >
-        Logout
-      </button> */}
     </div>
   );
 }

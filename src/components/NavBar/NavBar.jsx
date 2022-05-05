@@ -13,10 +13,15 @@ export default function NavBar() {
       <nav
         className="navbar navbar-expand-md text-uppercase fixed-top"
         id="mainNav"
-        style={{ backgroundColor: "rgb(32,42,68)" }}
+        style={{ backgroundColor: "#242f40" }}
       >
         <div className="container">
-          <Link to="/" className="navbar-brand" onClick={pageRefresh}>
+          <Link
+            to="/"
+            className="navbar-brand"
+            onClick={pageRefresh}
+            style={{ color: "white" }}
+          >
             Home
           </Link>
           <button
@@ -37,6 +42,7 @@ export default function NavBar() {
                 <Link
                   to="/profile"
                   className="nav-link py-3 px-0 px-lg-3 rounded"
+                  style={{ color: "white" }}
                 >
                   Profile
                 </Link>
@@ -45,6 +51,7 @@ export default function NavBar() {
                 <Link
                   to="/files"
                   className="nav-link py-3 px-0 px-lg-3 rounded"
+                  style={{ color: "white" }}
                 >
                   Files
                 </Link>
