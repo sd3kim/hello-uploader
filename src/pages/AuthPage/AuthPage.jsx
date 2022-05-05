@@ -9,38 +9,31 @@ export default class AuthPage extends React.Component {
 
   render() {
     return (
-      <main className="AuthPage">
+      <main>
         <div>
           <h3
-            className="auth"
             onClick={() => this.setState({ showLogin: !this.state.showLogin })}
           >
             {/* {this.state.showLogin ? ( */}
-            <ul
-              class="nav nav-pills nav-justified mb-3"
-              id="ex1"
-              role="tablist"
-            >
-              <li class="nav-item" role="presentation">
+            <ul className="nav nav-pills nav-justified mb-3" id="ex1">
+              <li className="nav-item">
                 <a
-                  class="nav-link active"
+                  className="nav-link active"
                   id="tab-login"
                   data-mdb-toggle="pill"
                   href="#pills-login"
-                  role="tab"
                   aria-controls="pills-login"
                   aria-selected="true"
                 >
                   Register
                 </a>
               </li>
-              <li class="nav-item" role="presentation">
+              <li className="nav-item" role="presentation">
                 <a
-                  class="nav-link"
+                  className="nav-link"
                   id="tab-register"
                   data-mdb-toggle="pill"
                   href="#pills-register"
-                  role="tab"
                   aria-controls="pills-register"
                   aria-selected="false"
                 >
