@@ -5,3 +5,13 @@
 .image-preview-td {
   width: 20rem;
 }
+
+.Table {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+td {
+  text-align: center;
+  vertical-align: middle;
+}
