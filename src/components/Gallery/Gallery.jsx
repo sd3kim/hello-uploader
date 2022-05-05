@@ -69,13 +69,12 @@ export default function Gallery(props) {
                   {/* Uploaded At */}
                   <td key={idx}>{el.updatedAt.split("T")[0]}</td>
                   {/* /* Uploaded By */}
-                  <td>{props.user?.name}</td>
+                  <td key={idx}>{props.user?.name}</td>
                 </tr>
               ))}
           </tbody>
         </Table>
       </div>
-
       {/* {files &&
         files.map((el, index) => (
           <img

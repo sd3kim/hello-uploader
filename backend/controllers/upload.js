@@ -30,7 +30,7 @@ async function fileUpload(req, res) {
       };
       filesArray.push(file);
     });
-    console.log("this is files array", filesArray);
+    // console.log("this is files array", filesArray);
     // send to s3
     const bucket = await uploadFile(filesArray);
     // send to mongo
@@ -46,7 +46,7 @@ async function fileUpload(req, res) {
 async function getFiles(req, res) {
   try {
     const awsResponse = await getAllFiles();
-    console.log("this is aws response", awsResponse);
+    // console.log("this is aws response", awsResponse);
     const keyArr = awsResponse.Contents.map((obj) => {
       return obj.Key;
     });

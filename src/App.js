@@ -6,7 +6,6 @@ import NavBar from "./components/NavBar/NavBar";
 import MainPage from "./pages/MainPage/MainPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ViewFilesPage from "./pages/ViewFilesPage/ViewFilesPage";
-import Dropzone from "./components/DropZone/DropZone";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
@@ -40,7 +39,11 @@ export default function App() {
             <Route
               path="/files"
               element={
+<<<<<<< HEAD
                 <ViewFilesPage setUserInState={setUserInState} user={user} />
+=======
+                <ViewFilesPage user={user} setUserInState={setUserInState} />
+>>>>>>> 817d34966dacb8e9b0e06eb7e7a0d6ae9457d402
               }
             />
             <Route
