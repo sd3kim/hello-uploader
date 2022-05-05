@@ -24,7 +24,8 @@ async function uploadFile(file) {
       // uploadParams.Body = param.filePath;
       // Creating a read stream to the uploaded file
       uploadParams.Body = fs.createReadStream(param.filePath);
-      // console.log(uploadParams.Body);
+
+
       // files/UUID
       s3.upload(uploadParams).promise();
     })

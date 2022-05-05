@@ -54,7 +54,6 @@ async function getFiles(req, res) {
       .sort({ createdAt: "desc" })
       .exec();
     console.log("key Arr ", key);
-    res.status(200).json(key);
     // every key -> user.find to grab user
   } catch (err) {
     console.log(err);

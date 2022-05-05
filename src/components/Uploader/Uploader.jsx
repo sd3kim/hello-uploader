@@ -29,12 +29,20 @@ export default function Uploader() {
         console.log(result.data);
         setMessage("File successfully uploaded!");
       }
+      let jwt = localStorage.getItem("token");
+      console.log("this is jwt", jwt);
+      const result = await axios.post("/api/files", formData, {
+        headers: {
+          "Content-Type": "multipart/form.data",
+          Authorization: "Bearer " + jwt,
+        },
+      });
+      console.log(result.data);
     } catch (err) {
       console.log(err);
       setMessage("Error while uploading");
     }
   };
-
   return (
     <div className="Wrapper">
       <div className="Upload">
