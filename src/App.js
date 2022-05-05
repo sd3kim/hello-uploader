@@ -6,12 +6,11 @@ import NavBar from "./components/NavBar/NavBar";
 import MainPage from "./pages/MainPage/MainPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ViewFilesPage from "./pages/ViewFilesPage/ViewFilesPage";
+import Dropzone from "./components/DropZone/DropZone";
 import "bootstrap/dist/css/bootstrap.min.css";
-import SignUpForm from "./components/SignUpForm/SignUpForm";
 
 export default function App() {
   const [user, setUser] = useState();
-  const [images, setImages] = useState([]);
 
   const setUserInState = (incomingUserData) => {
     setUser(incomingUserData);

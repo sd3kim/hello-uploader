@@ -17,6 +17,8 @@ const filesSchema = new Schema(
       required: true,
     },
     user: { type: Schema.Types.ObjectId, ref: "User" },
+    // .find  = get docu; want ref data
+    // .populate on query and you
   },
 
   { timestamps: true }
@@ -24,3 +26,5 @@ const filesSchema = new Schema(
 
 // File is converted to lowercase and plural in mongodb
 module.exports = mongoose.model("File", filesSchema);
+
+// join user and file
