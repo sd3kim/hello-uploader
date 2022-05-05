@@ -7,10 +7,9 @@ import MainPage from "./pages/MainPage/MainPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ViewFilesPage from "./pages/ViewFilesPage/ViewFilesPage";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import SignUpForm from "./components/SignUpForm/SignUpForm";
 
 export default function App() {
-
   const [user, setUser] = useState();
   const [images, setImages] = useState([]);
 
@@ -47,6 +46,10 @@ export default function App() {
                 <ProfilePage setUserInState={setUserInState} user={user} />
               }
             />
+            <Route
+              path="/signUp"
+              element={<SignUpForm setUserInState={setUserInState} />}
+            />
           </Routes>
           <NavBar />
         </div>
@@ -56,4 +59,3 @@ export default function App() {
     </div>
   );
 }
-

@@ -27,6 +27,22 @@
 .App-link {
   color: #61dafb;
 }
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.logOut {
+  padding-top: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+.btn-sm {
+  margin-top: 50px;
+}
 
 @keyframes App-logo-spin {
   from {
