@@ -1,8 +1,13 @@
 import React from "react";
 import "../../css/styles.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function NavBar() {
+  let navigate = useNavigate();
+  let pageRefresh = () => {
+    navigate("/");
+    window.location.reload(true);
+  };
   return (
     <div>
       <nav
@@ -11,7 +16,7 @@ export default function NavBar() {
         style={{ backgroundColor: "rgb(32,42,68)" }}
       >
         <div className="container">
-          <Link to="/" className="navbar-brand">
+          <Link to="/" className="navbar-brand" onClick={pageRefresh}>
             Home
           </Link>
           <button
