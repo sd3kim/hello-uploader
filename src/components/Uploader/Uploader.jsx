@@ -63,6 +63,8 @@ export default function Uploader() {
             multiple
             onChange={(e) => setFiles(e.target.files)}
           ></input>
+        </form>
+        <div>
           <ProgressBar percentage={uploadPercentage} />
           <button
             className="Upload-button"
@@ -71,7 +73,7 @@ export default function Uploader() {
           >
             Upload
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );

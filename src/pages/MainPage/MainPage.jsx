@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../css/styles.css";
 import Uploader from "../../components/Uploader/Uploader";
 
 export default function MainPage() {
-  const [files, setFiles] = useState([]);
   return (
     <div>
       <header className="masthead bg-info text-white text-center">
