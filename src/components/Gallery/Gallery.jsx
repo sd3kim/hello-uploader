@@ -69,7 +69,7 @@ export default function Gallery(props) {
                   {/* Uploaded At */}
                   <td key={idx}>{el.updatedAt.split("T")[0]}</td>
                   {/* /* Uploaded By */}
-                  <td key={idx}>{el.user}</td>
+                  <td key={idx}>{props.user?.name}</td>
                 </tr>
               ))}
           </tbody>
