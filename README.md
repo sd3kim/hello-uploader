@@ -59,3 +59,6 @@ Note - "Hello, Uploader!" only accepts PDF, PNG, and JPEG files.
 
 - Implement "drag and drop" functionality for file uploading.
 - Allow for preview of PDFs.
+- Allow for user account password resetting.
+- Allow for file downloading.
+- Include OAUTH for sign in.
