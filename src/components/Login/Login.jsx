@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 
 export default function Login(props) {
   const [user, setUser] = useState({
     name: "",
     password: "",
   });
-
-  let navigate = useNavigate();
 
   function handleChange(e) {
     setUser({ ...user, [e.target.name]: e.target.value });
