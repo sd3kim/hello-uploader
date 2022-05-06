@@ -13,7 +13,6 @@ const s3 = new S3({
 });
 
 async function uploadFile(file) {
-  console.log("this is file path", file);
   const uploadParams = {
     Bucket: BUCKET_NAME,
   };
