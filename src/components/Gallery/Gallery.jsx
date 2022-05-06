@@ -73,26 +73,6 @@ export default function Gallery(props) {
           </tbody>
         </Table>
       </div>
-      {/* {files &&
-        files.map((el, index) => (
-          <img
-            className="image-preview"
-            key={index}
-            src={`https://file-uploader123.s3.amazonaws.com/${
-              el.filePath.split("/")[1]
-            }`}
-          />
-        ))} */}
-
-      {/* {files &&
-        files.map((el, index) => (
-          <img
-            key={index}
-            src={`https://fuploader.s3.amazonaws.com/${
-              el.filePath.split("/")[1]
-            }`}
-          />
-        ))} */}
     </div>
   );
 }
