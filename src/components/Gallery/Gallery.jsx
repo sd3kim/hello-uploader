@@ -48,6 +48,7 @@ export default function Gallery(props) {
               <th>File Size</th>
               <th>Uploaded At</th>
               <th>Uploaded By</th>
+              <th>Delete?</th>
             </tr>
           </thead>
           <tbody>
@@ -67,7 +68,7 @@ export default function Gallery(props) {
                       <img
                         className="image-preview"
                         key={idx}
-                        src={`https://fuploader.s3.amazonaws.com/${
+                        src={`https://file-uploader123.s3.amazonaws.com/${
                           el.filePath.split("/")[1]
                         }`}
                       />
