@@ -5,6 +5,7 @@ import "./Gallery.css";
 
 export default function Gallery(props) {
   const [files, setFiles] = useState([]);
+  const [deleted, setDeleted] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +20,22 @@ export default function Gallery(props) {
       }
     };
     fetchData();
-  }, []);
+  }, [deleted]);
+  const handleDelete = async (id) => {
+    try {
+      let jwt = localStorage.getItem("token");
+      const { data } = await axios.delete(`/api/delete/${id}`, {
+        headers: { Authorization: "Bearer " + jwt },
+      });
+
+      const file = files.filter((item) => item.id !== id);
+      setFiles(file);
+      setDeleted(!deleted);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
       <div className="Table">
@@ -58,7 +74,7 @@ export default function Gallery(props) {
                     )}
                   </td>
                   {/* File Name */}
-                  <td key={idx}>{el.fileName.split(".")[0]}</td>
+                  <td key={idx + 1}>{el.fileName.split(".")[0]}</td>
                   {/* File Type */}
                   <td key={idx}>{el.fileType.split("/")[1]}</td>
                   {/* File Size */}
@@ -67,6 +83,16 @@ export default function Gallery(props) {
                   <td key={idx}>{el.updatedAt.split("T")[0]}</td>
                   {/* /* Uploaded By */}
                   <td key={idx}>{props.user?.name}</td>
+                  <td>
+                    <img
+                      className="Delete"
+                      key={idx + 2}
+                      src={
+                        "https://github.com/sirenfal-factorio/Trashcan/blob/master/Trashcan_1.0.1/graphics/bin-empty-icon.png?raw=true"
+                      }
+                      onClick={() => handleDelete(el._id)}
+                    />
+                  </td>
                 </tr>
               ))}
           </tbody>

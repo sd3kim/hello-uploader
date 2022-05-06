@@ -17,8 +17,6 @@ const filesSchema = new Schema(
       required: true,
     },
     user: { type: Schema.Types.ObjectId, ref: "User" },
-    // .find  = get docu; want ref data
-    // .populate on query and you
   },
 
   { timestamps: true }

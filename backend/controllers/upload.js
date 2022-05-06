@@ -1,6 +1,6 @@
 const File = require("../models/file");
 const util = require("util");
-const { uploadFile, getAllFiles } = require("../config/s3");
+const { uploadFile, getAllFiles, deleteFile } = require("../config/s3");
 const fs = require("fs");
 
 const unlinkFile = util.promisify(fs.unlink);
@@ -30,7 +30,6 @@ async function fileUpload(req, res) {
       };
       filesArray.push(file);
     });
-    // console.log("this is files array", filesArray);
     // send to s3
     const bucket = await uploadFile(filesArray);
     // send to mongo
@@ -46,16 +45,27 @@ async function fileUpload(req, res) {
 async function getFiles(req, res) {
   try {
     const awsResponse = await getAllFiles();
-    // console.log("this is aws response", awsResponse);
     const keyArr = awsResponse.Contents.map((obj) => {
       return obj.Key;
     });
     const key = await File.find({ user: req.user._id })
       .sort({ createdAt: "desc" })
       .exec();
-    console.log("key Arr ", key);
     res.status(200).json(key);
     // every key -> user.find to grab user
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err.message);
+  }
+}
+
+async function deleteFiles(req, res) {
+  try {
+    const findPath = await File.findById({ _id: req.params.id });
+    const path = findPath.filePath.split("/")[1];
+    const file = await File.findByIdAndDelete({ _id: req.params.id });
+    const Bucket = await deleteFile(path);
+    res.status(200).json(file);
   } catch (err) {
     console.log(err);
     res.status(400).send(err.message);
@@ -65,4 +75,5 @@ async function getFiles(req, res) {
 module.exports = {
   fileUpload,
   getFiles,
+  deleteFiles,
 };

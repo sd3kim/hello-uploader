@@ -15,3 +15,6 @@ td {
   text-align: center;
   vertical-align: middle;
 }
+.Delete {
+  cursor: pointer;
+}

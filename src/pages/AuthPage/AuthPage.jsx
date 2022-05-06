@@ -20,7 +20,6 @@ export default class AuthPage extends React.Component {
               })
             }
           >
-            {/* {this.state.showLogin ? ( */}
             <ul className="nav nav-pills nav-justified mb-3" id="ex1">
               <li className="nav-item">
                 <a

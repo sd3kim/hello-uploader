@@ -6,5 +6,5 @@ const filesCtrl = require("../../controllers/upload");
 
 router.post("/files", upload.array("file"), filesCtrl.fileUpload);
 router.get("/getFiles", filesCtrl.getFiles);
-
+router.delete("/delete/:id", filesCtrl.deleteFiles);
 module.exports = router;

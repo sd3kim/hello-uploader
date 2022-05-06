@@ -90,37 +90,11 @@ export default class SignUpForm extends Component {
                   <br />
                   <br />
                   <p className="error-message">&nbsp;{this.state.error}</p>
-                  {/* <div className="divider d-flex align-items-center my-4">
-                    <p className="text-center fw-bold mx-3 mb-0 text-muted">
-                      OR
-                    </p>
-                  </div> */}
                 </form>
               </div>
             </div>
           </div>
         </section>
-        {/* <div classNameName="form-container" onSubmit={this.handleSubmit}>
-          <form autoComplete="off">
-            <label>Email</label>
-            <input
-              type="text"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-              required
-            />
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-              required
-            />
-            <button type="submit">LOG IN</button>
-          </form>
-        </div> */}
       </div>
     );
   }
