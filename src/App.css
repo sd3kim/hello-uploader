@@ -32,3 +32,10 @@
 .btn-sm {
   margin-top: 50px;
 }
+
+footer {
+  position: fixed;
+  height: 70px;
+  width: 100%;
+  bottom: 0;
+}
