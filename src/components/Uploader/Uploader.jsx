@@ -61,6 +61,7 @@ export default function Uploader() {
       <div className="Upload">
         <form>
           <input
+            alt="Choose-file"
             type="file"
             accept="image/png, application/pdf, image/jpeg"
             multiple

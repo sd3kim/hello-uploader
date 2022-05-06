@@ -52,7 +52,6 @@ async function getFiles(req, res) {
       .sort({ createdAt: "desc" })
       .exec();
     res.status(200).json(key);
-    // every key -> user.find to grab user
   } catch (err) {
     console.log(err);
     res.status(400).send(err.message);

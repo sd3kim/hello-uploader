@@ -44,7 +44,7 @@ export default function Gallery(props) {
             <tr>
               <th>File Preview</th>
               <th>File Name</th>
-              <th>File Type (pdf, png, jpeg)</th>
+              <th>File Type (PDF, PNG, JEPG)</th>
               <th>File Size</th>
               <th>Uploaded At</th>
               <th>Uploaded By</th>
@@ -98,26 +98,6 @@ export default function Gallery(props) {
           </tbody>
         </Table>
       </div>
-      {/* {files &&
-        files.map((el, index) => (
-          <img
-            className="image-preview"
-            key={index}
-            src={`https://file-uploader123.s3.amazonaws.com/${
-              el.filePath.split("/")[1]
-            }`}
-          />
-        ))} */}
-
-      {/* {files &&
-        files.map((el, index) => (
-          <img
-            key={index}
-            src={`https://fuploader.s3.amazonaws.com/${
-              el.filePath.split("/")[1]
-            }`}
-          />
-        ))} */}
     </div>
   );
 }

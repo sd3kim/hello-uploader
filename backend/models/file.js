@@ -22,7 +22,4 @@ const filesSchema = new Schema(
   { timestamps: true }
 );
 
-// File is converted to lowercase and plural in mongodb
 module.exports = mongoose.model("File", filesSchema);
-
-// join user and file

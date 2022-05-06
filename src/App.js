@@ -50,7 +50,7 @@ export default function App() {
             />
           </Routes>
           <NavBar />
-          <footer className="footer">
+          <footer className="footer" style={{ backgroundColor: "#242f40" }}>
             Copyright © GA - Team Java the Hut 2022
           </footer>
         </div>

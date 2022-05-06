@@ -19,7 +19,6 @@ async function uploadFile(file) {
   await Promise.all(
     file.map((param) => {
       uploadParams.Key = param.filePath.split("/")[1];
-      // uploadParams.Body = param.filePath;
       // Creating a read stream to the uploaded file
       uploadParams.Body = fs.createReadStream(param.filePath);
 
