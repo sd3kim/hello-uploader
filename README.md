@@ -43,7 +43,7 @@ This project was created in collaboration with:
 
 ### **Getting Started**
 
-[Code Link Here]
+http://54.234.202.208:3001/
 
 To start using "Hello, Uploader!", a log in or sign up is required. From there, users will be redirected to the main page where the real fun can begin.
 
@@ -58,5 +58,4 @@ Note - "Hello, Uploader!" only accepts PDF, PNG, and JPEG files.
 ### **Next Steps**
 
 - Implement "drag and drop" functionality for file uploading.
-- Allow files to be deleted.
 - Allow for preview of PDFs.
