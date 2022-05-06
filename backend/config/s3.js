@@ -21,6 +21,7 @@ async function uploadFile(file) {
       uploadParams.Key = param.filePath.split("/")[1];
       // Creating a read stream to the uploaded file
       uploadParams.Body = fs.createReadStream(param.filePath);
+
       // files/UUID
       s3.upload(uploadParams).promise();
     })
@@ -33,6 +34,14 @@ function getAllFiles() {
   };
   return s3.listObjects(params).promise();
 }
+function deleteFile(filePath) {
+  const params = {
+    Bucket: BUCKET_NAME,
+    Key: filePath,
+  };
+  return s3.deleteObject(params).promise();
+}
 
 exports.uploadFile = uploadFile;
 exports.getAllFiles = getAllFiles;
+exports.deleteFile = deleteFile;
