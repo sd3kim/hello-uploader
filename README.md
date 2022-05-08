@@ -2,7 +2,7 @@
 
 Hello, world? Hello, Uploader!
 
-"Hello, Uploader!" is a file-uploading MERN stack application that allows for multiple file uploads and saves user images/pdfs through AWS, S3 Buckets, and MongoDB Atlas.
+"Hello, Uploader!" is a file-uploading MERN stack application that allows for multiple file uploads and saves user images/pdfs.
 
 ---
 
