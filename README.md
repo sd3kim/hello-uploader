@@ -2,7 +2,7 @@
 
 Hello, world? Hello, Uploader!
 
-"Hello, Uploader!" is a file-uploading MERN stack application that allows for multiple file uploads and saves user images/pdfs.
+"Hello, Uploader!" is a file-uploading MERN stack application that allows for multiple file uploads and saves user images/pdfs. The application implements JWT token-based authentication allowing for user login/logout.
 
 ---
 
