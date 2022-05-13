@@ -68,7 +68,7 @@ export default function Gallery(props) {
                       <img
                         className="image-preview"
                         key={idx}
-                        src={`https://file-uploader123.s3.amazonaws.com/${
+                        src={`https://fuploader.s3.amazonaws.com/${
                           el.filePath.split("/")[1]
                         }`}
                       />
