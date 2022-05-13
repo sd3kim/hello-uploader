@@ -42,3 +42,23 @@
 .Temp-image {
   width: 250px;
 }
+@media only screen and (max-width: 850px) {
+  .wrapper-upload,
+  .Upload,
+  .Upload-button,
+  .Temp-image,
+  .message {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .wrapper-upload,
+  .Upload,
+  .Upload-button,
+  .message {
+    width: 100%;
+  }
+  .Temp-image {
+    width: 0;
+  }
+}

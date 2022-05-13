@@ -46,9 +46,9 @@ export default function Uploader() {
 
   return (
     <div className="Wrapper">
-      <div>
+      <div className="wrapper-upload">
         {message ? (
-          <UploaderMessage uploadMsg={message} />
+          <UploaderMessage uploadMsg={message} className="message" />
         ) : (
           <img
             className="Temp-image"
